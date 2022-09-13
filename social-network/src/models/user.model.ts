@@ -1,5 +1,6 @@
 import { Schema, Model, model } from "mongoose";
 import { iUser } from "../interfaces/index.interface";
+import jwt from "jsonwebtoken";
 
 const userSchema: Schema = new Schema<iUser>({
     email: {
@@ -26,8 +27,6 @@ const userSchema: Schema = new Schema<iUser>({
     phoneNo: {
         type: String,
         required: true,
-        minlength: 12,
-        maxlength: 12
     },
     role: {
         type: String,
@@ -35,7 +34,7 @@ const userSchema: Schema = new Schema<iUser>({
         enum: ["user", "moderator"]
     },
     following: {
-        type: [String],
+        type: [Object],
         required: false,
         default: []
     }
@@ -46,10 +45,10 @@ const userSchema: Schema = new Schema<iUser>({
     }
 });
 
-// userSchema.methods.generateAuthToken = function () {
-//     const token = jwt.sign({ _id: this._id, email: this.email, name: this.fname + " " + this.lname, role: this.role }, process.env.jwtPrivateKey, { expiresIn: '2h' });
-//     return token;
-// }
+userSchema.methods.generateAuthToken = function () {
+    const token = jwt.sign({ _id: this._id, email: this.email, name: this.fname + " " + this.lname, role: this.role }, process.env.jwtPrivateKey, { expiresIn: '5h' });
+    return token;
+}
 
 const User: Model<iUser> = model<iUser>("user", userSchema);
 export default User;
