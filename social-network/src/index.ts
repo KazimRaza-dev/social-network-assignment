@@ -7,6 +7,8 @@ const app = express();
 connectToMongoDb();
 
 app.use("/", (req: Request, res: Response) => {
+    console.log("hello from console");
+
     res.send("Hello worlds..")
 })
 
