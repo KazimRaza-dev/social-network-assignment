@@ -1,16 +1,15 @@
 import { Types } from "mongoose";
 
 interface iPost {
-    _id: Types.ObjectId,
+    _id?: Types.ObjectId,
     title: string,
     description: string,
-    postDateTime: string,
-    userId: {
+    userId?: {
         type: Types.ObjectId,
         ref: "users"
     },
-    _createdAt: Date,
-    _updatedAt: Date
+    _createdAt?: Date,
+    _updatedAt?: Date
 }
 
 export default iPost;
