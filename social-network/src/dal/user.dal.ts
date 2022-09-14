@@ -38,26 +38,40 @@ const userDal = {
         }
     },
 
+    isUserExists: async (userId: string) => {
+        try {
+            const user: iUser = await User.findOne({ _id: userId });
+            return user;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    isFollowing: async (loginUserId: string, followUserId: string) => {
+        const user: iUser = await User.findOne()
+            .and([{ _id: loginUserId }, { "following": { $elemMatch: { userId: followUserId } } }]);
+        return user;
+    },
+
     followUser: async (loginUserId: string, followUserId: string) => {
         try {
-            const isUserExists = await User.findOne({ _id: followUserId });
-            if (!isUserExists) {
-                return null;
-            }
-
-            const isAlreadyFollowed = await User.findOne()
-                .or([{ _id: loginUserId }, { "following": { $elemMatch: { userId: followUserId } } }])
-            if (isAlreadyFollowed) {
-                console.log("Already followd");
-                return null;
-            }
-            console.log(isAlreadyFollowed);
-
-
             const userFollowed = await User.findByIdAndUpdate(loginUserId, {
                 $push: { following: { userId: followUserId } }
             }, { new: true });
             return userFollowed;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    unfollowUser: async (loginUserId: string, followUserId: string) => {
+        try {
+            const unfollowed = await User.findByIdAndUpdate(loginUserId, {
+                $pullAll: {
+                    following: [{ userId: followUserId }],
+                },
+            }, { new: true });
+            return unfollowed;
         } catch (error) {
             throw error;
         }

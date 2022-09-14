@@ -55,6 +55,20 @@ const userController = {
         } catch (error) {
             next(error);
         }
+    },
+
+    unfollowUser: async (req: userAuthRequest, res: Response, next: NextFunction) => {
+        try {
+            const userId = req.user._id;
+            const followUserId = req.body.userId;
+            const { unfollowSuccess, unfollowFailure } = await userService.unfollowUser(userId, followUserId);
+            if (unfollowFailure) {
+                return res.status(unfollowFailure.statusCode).send(unfollowFailure.message);
+            }
+            return res.status(200).send(unfollowSuccess);
+        } catch (error) {
+            next(error);
+        }
     }
 }
 
