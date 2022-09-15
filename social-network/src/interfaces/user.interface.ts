@@ -8,7 +8,7 @@ interface iUser extends Document {
     lname: string,
     phoneNo: string,
     role: string,
-    following?: Object[],
+    following?: string[],
     _createdAt?: Date,
     _updatedAt?: Date,
     generateAuthToken: Function,

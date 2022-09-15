@@ -49,14 +49,14 @@ const userDal = {
 
     isFollowing: async (loginUserId: string, followUserId: string) => {
         const user: iUser = await User.findOne()
-            .and([{ _id: loginUserId }, { "following": { $elemMatch: { userId: followUserId } } }]);
+            .and([{ _id: loginUserId }, { "following": followUserId }]);
         return user;
     },
 
     followUser: async (loginUserId: string, followUserId: string) => {
         try {
             const userFollowed = await User.findByIdAndUpdate(loginUserId, {
-                $push: { following: { userId: followUserId } }
+                $push: { following: followUserId }
             }, { new: true });
             return userFollowed;
         } catch (error) {
@@ -68,7 +68,7 @@ const userDal = {
         try {
             const unfollowed = await User.findByIdAndUpdate(loginUserId, {
                 $pullAll: {
-                    following: [{ userId: followUserId }],
+                    following: [followUserId],
                 },
             }, { new: true });
             return unfollowed;

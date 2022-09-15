@@ -34,7 +34,7 @@ const userSchema: Schema = new Schema<iUser>({
         enum: ["user", "moderator"]
     },
     following: {
-        type: [Object],
+        type: [String],
         required: false,
         default: []
     }

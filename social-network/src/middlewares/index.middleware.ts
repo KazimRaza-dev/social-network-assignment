@@ -5,5 +5,6 @@ import handleError from "./handleErrors.middleware"
 import connectUser from "./connectUser.middleware";
 import validateNewPost from "./validatePost.middleware";
 import validateEditPost from "./validateEditPost.middleware"
+import validateFeedQueryParams from "./validator.middleware";
 
-export { auth, registerRequest, loginRequest, handleError, connectUser, validateNewPost, validateEditPost }
+export { auth, registerRequest, loginRequest, handleError, connectUser, validateNewPost, validateEditPost, validateFeedQueryParams }
