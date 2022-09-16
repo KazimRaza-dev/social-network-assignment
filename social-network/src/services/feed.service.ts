@@ -1,7 +1,7 @@
 import { feedDal } from "../dal/index.dal";
 import { responseWrapper } from "../utils/index.util";
 
-const feedServices = {
+export default {
     showFeed: async (userId: string, pageno = 1, size = 5, sortby = "_createdAt", order = "asc") => {
         try {
             const isUserExists = await feedDal.isUserExists(userId);
@@ -22,6 +22,4 @@ const feedServices = {
             throw error;
         }
     }
-}
-
-export default feedServices;
+};

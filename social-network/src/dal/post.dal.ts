@@ -1,7 +1,7 @@
 import { iPost } from "../interfaces/index.interface";
 import { Post } from "../models/index.model";
 
-const postDal = {
+export default {
     create: async (reqPost): Promise<iPost> => {
         try {
             const newPost = new Post(reqPost);
@@ -41,6 +41,15 @@ const postDal = {
         }
     },
 
+    getSinglePost: async (postId: string): Promise<iPost> => {
+        try {
+            const post: iPost = await Post.findById(postId);
+            return post;
+        } catch (error) {
+            throw error;
+        }
+    },
+
     getUserPosts: async (userId: string, pageNo: number, pageSize: number): Promise<iPost[]> => {
         try {
             const skip: number = (pageNo - 1) * pageSize;
@@ -52,5 +61,3 @@ const postDal = {
     },
 
 }
-
-export default postDal;

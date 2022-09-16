@@ -1,45 +1,9 @@
 import { userDal } from "../dal/index.dal";
 import { iUser } from "../interfaces/index.interface";
-import { responseWrapper, passwordHashing } from "../utils/index.util";
-import { iResponse } from "../interfaces/index.interface";
+import { responseWrapper } from "../utils/index.util";
+import { Socket } from "../sockets/index.sockets";
 
-const userService = {
-    register: async (userToRegister) => {
-        try {
-            const isUserExists: iUser = await userDal.isEmailExists(userToRegister.email)
-            if (isUserExists) {
-                const failure: iResponse = responseWrapper(400, "Email already Exists.");
-                return { failure };
-            }
-            userToRegister.password = await passwordHashing.hashPassword(userToRegister.password);
-            const user: iUser = await userDal.register(userToRegister);
-            const userRegistered = {
-                message: "User successfully registered.",
-                user: user
-            }
-            return { userRegistered };
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    login: async (reqUser) => {
-        try {
-            const user: iUser = await userDal.login(reqUser.email, reqUser.password, reqUser.role);
-            if (user) {
-                const loginSuccess = {
-                    message: "User successfully logged In",
-                    user: user,
-                }
-                return { loginSuccess }
-            }
-            const loginFailure = responseWrapper(401, "Invalid Email, password or role")
-            return { loginFailure };
-        } catch (error) {
-            throw error;
-        }
-    },
-
+export default {
     followUser: async (userId: string, followUserId: string) => {
         try {
             if (userId === followUserId) {
@@ -57,6 +21,7 @@ const userService = {
                 return { followFailure };
             }
             const userFollowed: iUser = await userDal.followUser(userId, followUserId);
+            Socket.join(followUserId);
             const followSuccess = {
                 message: "User followed.",
                 user: userFollowed
@@ -85,8 +50,7 @@ const userService = {
             }
             const unfollow: iUser = await userDal.unfollowUser(userId, followUserId);
             const unfollowSuccess = {
-                message: "User unfollowed.",
-                user: unfollow
+                message: "User unfollowed.", user: unfollow
             }
             return { unfollowSuccess };
         } catch (error) {
@@ -94,5 +58,3 @@ const userService = {
         }
     }
 }
-
-export default userService;

@@ -1,7 +1,7 @@
 import { iPost, iUser } from "../interfaces/index.interface";
 import { Post, User } from "../models/index.model";
 
-const feedDal = {
+export default {
     isUserExists: async (userId: string) => {
         try {
             const user: iUser = await User.findOne({ _id: userId });
@@ -26,4 +26,3 @@ const feedDal = {
     }
 }
 
-export default feedDal;

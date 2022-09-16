@@ -1,5 +1,5 @@
-import express, { Express } from "express";
 import { connectToMongoDb } from "./config/index.config";
+import { app, server } from "./sockets/index.sockets";
 import cors, { CorsOptions } from "cors";
 import { config } from "dotenv";
 import bodyParser from "body-parser";
@@ -8,7 +8,6 @@ import { handleError } from "./middlewares/index.middleware";
 import { checkEnvVariables } from "./utils/index.util";
 
 config();
-const app: Express = express();
 connectToMongoDb();
 checkEnvVariables();
 
@@ -18,7 +17,6 @@ const corsOptions: CorsOptions = {
     methods: "HEAD, PUT, PATCH, POST, DELETE",
 }
 app.use(cors(corsOptions));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
@@ -27,6 +25,6 @@ app.use(bodyParser.urlencoded({
 app.use(routes);
 app.use(handleError);
 
-app.listen(PORT, () => {
-    console.log(`Server is listening at http://localhost/${PORT}`);
+server.listen(PORT, () => {
+    console.log(`Server is listening at port ${PORT}`);
 })

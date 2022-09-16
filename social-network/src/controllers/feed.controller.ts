@@ -4,8 +4,7 @@ import { feedServices } from "../services/index.service";
 interface userAuthRequest extends Request {
     user: any
 }
-
-const feedController = {
+export default {
     showFeed: async (req: userAuthRequest, res: Response, next: NextFunction) => {
         try {
             const userId = req.user._id;
@@ -19,6 +18,4 @@ const feedController = {
             next(error);
         }
     }
-}
-
-export default feedController;
+};

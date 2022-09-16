@@ -1,14 +1,16 @@
 import express, { Router } from "express";
 import { postController } from "../controllers/index.controller";
-import { auth, validateNewPost, validateEditPost } from "../middlewares/index.middleware";
+import { auth, userAuth, validate } from "../middlewares/index.middleware";
 const postRouter: Router = express.Router();
 
-postRouter.post("/post/add", auth, validateNewPost, postController.addPost);
+postRouter.post("/add", userAuth, validate.newPost, postController.addPost);
 
-postRouter.put("/post/edit/:id", auth, validateEditPost, postController.updatePost);
+postRouter.put("/edit/:id", auth, validate.editPost, postController.updatePost);
 
-postRouter.delete("/post/delete/:id", auth, postController.deletePost);
+postRouter.delete("/delete/:id", auth, postController.deletePost);
 
-postRouter.get("/post/userposts/:userId", auth, postController.getUserPosts);
+postRouter.get("/:id", auth, postController.getSinglePost);
+
+postRouter.get("/userposts/:userId", auth, postController.getUserPosts);
 
 export default postRouter;

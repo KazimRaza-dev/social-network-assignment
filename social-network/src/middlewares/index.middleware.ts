@@ -1,10 +1,6 @@
-import auth from "./auth.middleware";
-import registerRequest from "./registerUser.middleware";
-import loginRequest from "./loginUser.middleware";
-import handleError from "./handleErrors.middleware"
-import connectUser from "./connectUser.middleware";
-import validateNewPost from "./validatePost.middleware";
-import validateEditPost from "./validateEditPost.middleware"
-import validateFeedQueryParams from "./validator.middleware";
+import auth from "./auth/auth.middleware";
+import userAuth from "./auth/userAuth.middleware";
+import handleError from "./error-handler/handleErrors.middleware";
+import validate from "./validator/validateRequests.middleware"
 
-export { auth, registerRequest, loginRequest, handleError, connectUser, validateNewPost, validateEditPost, validateFeedQueryParams }
+export { auth, userAuth, handleError, validate }

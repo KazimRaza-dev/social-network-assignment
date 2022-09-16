@@ -35,8 +35,7 @@ const userSchema: Schema = new Schema<iUser>({
     },
     following: {
         type: [String],
-        required: false,
-        default: []
+        required: false
     }
 }, {
     timestamps: {
