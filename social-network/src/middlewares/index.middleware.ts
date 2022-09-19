@@ -1,7 +1,5 @@
 import auth from "./auth.middleware";
-import registerRequest from "./registerUser.middleware";
-import loginRequest from "./loginUser.middleware";
 import handleError from "./handleErrors.middleware"
-import connectUser from "./connectUser.middleware";
+import validate from "./validator/validateRequests.middleware";
 
-export { auth, registerRequest, loginRequest, handleError, connectUser }
+export { auth, validate, handleError }
