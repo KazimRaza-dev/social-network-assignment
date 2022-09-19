@@ -13,12 +13,13 @@ const postSchema: Schema = new Schema<iPost>({
     },
     userId: {
         type: Types.ObjectId,
-        ref: "users"
+        ref: "users",
+        required: true
     }
 }, {
     timestamps: {
-        createdAt: '_createdAt',
-        updatedAt: '_updatedAt'
+        createdAt: 'createdAt',
+        updatedAt: 'updatedAt'
     }
 })
 

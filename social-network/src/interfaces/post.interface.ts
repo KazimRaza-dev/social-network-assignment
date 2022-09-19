@@ -8,8 +8,8 @@ interface iPost {
         type: Types.ObjectId,
         ref: "users"
     },
-    _createdAt?: Date,
-    _updatedAt?: Date
+    createdAt?: Date,
+    updatedAt?: Date
 }
 
 export default iPost;

@@ -1,21 +1,24 @@
-import { iPost } from "../interfaces/index.interface";
+import { iPost, iPostBody, iEditPostBody } from "../interfaces/index.interface";
 import { postDal } from "../dal/index.dal";
 import { responseWrapper } from "../utils/index.util";
 import { Socket } from "../sockets/index.sockets";
 
 export default {
-    createPost: async (reqPost): Promise<iPost> => {
+    createPost: async (reqPost: iPostBody) => {
         try {
             const post: iPost = await postDal.create(reqPost);
             const id: string = post.userId.toString();
             Socket.to(id).emit("updatefeed", post);
-            return post;
+            const newPost = {
+                message: "New Post Created.."
+            }
+            return { newPost };
         } catch (error) {
             throw error;
         }
     },
 
-    update: async (postId: string, reqPost: iPost, tokenUserId: string, userRole: string) => {
+    update: async (postId: string, reqPost: iEditPostBody, tokenUserId: string, userRole: string) => {
         try {
             const { failure } = await checkUserAccess(postId, tokenUserId, userRole, 'edit');
             if (failure) {
@@ -38,10 +41,9 @@ export default {
             if (failure) {
                 return { failure };
             }
-            const deletedPost: iPost = await postDal.delete(postId);
+            await postDal.delete(postId);
             const post = {
-                message: "Post successfully deleted.",
-                updated: deletedPost
+                message: "Post successfully deleted."
             }
             return { post };
         } catch (error) {
@@ -62,13 +64,15 @@ export default {
         }
     },
 
-    getUserPosts: async (userId: string, userRole: string, tokenUserId: string, pageno = 1, pageSize = 5) => {
+    getUserPosts: async (userId: string, userRole: string, tokenUserId: string, pageno: string, pageSize: string) => {
         try {
             if (userRole === "user" && tokenUserId !== userId) {
                 const failure = responseWrapper(400, "You cannot view other User's tasks.")
                 return { failure };
             }
-            const userPosts: iPost[] = await postDal.getUserPosts(userId, pageno, pageSize);
+            const pageNo = pageno && parseInt(pageno);
+            const size = pageSize && parseInt(pageSize);
+            const userPosts: iPost[] = await postDal.getUserPosts(userId, pageNo, size);
             if (userPosts.length > 0) {
                 const posts = {
                     usertasks: userPosts

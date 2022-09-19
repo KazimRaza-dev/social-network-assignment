@@ -1,19 +1,17 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import { pick } from "lodash";
-import { iPost } from "../interfaces/index.interface";
+import { iPostBody, iEditPostBody } from "../interfaces/index.interface";
 import { postService } from "../services/index.service";
+import { userAuthRequest } from "../interfaces/index.interface";
 
-interface userAuthRequest extends Request {
-    user: any
-}
 export default {
     addPost: async (req: userAuthRequest, res: Response, next: NextFunction) => {
         try {
-            const reqPost: iPost = pick(req.body, ['title', 'description']);
+            const reqPost: iPostBody = pick(req.body, ['title', 'description']);
             reqPost.userId = req.user._id;
-            const post: iPost = await postService.createPost(reqPost);
+            const { newPost } = await postService.createPost(reqPost);
             res.status(200).json({
-                "message": "New post created.", "Post details": post
+                "message": newPost.message
             });
         }
         catch (error) {
@@ -26,7 +24,7 @@ export default {
             const tokenUserId: string = req.user._id;
             const userRole: string = req.user.role;
             const postId: string = req.params.id;
-            const reqPost = req.body;
+            const reqPost: iEditPostBody = req.body;
 
             const { post, failure } = await postService.update(postId, reqPost, tokenUserId, userRole);
             if (failure) {
@@ -52,7 +50,7 @@ export default {
                 return res.status(failure.statusCode).send(failure.message);
             }
             return res.status(200).json({
-                message: post.message, post: post.updated
+                message: post.message
             })
         }
         catch (error) {
@@ -81,7 +79,8 @@ export default {
             const tokenUserId: string = req.user._id;
             const userId: string = req.params.userId;
             const userRole: string = req.user.role;
-            const { pageno, size } = req.query as any;
+            const pageno = req.query.pageno as string;
+            const size = req.query.size as string;
 
             const { failure, posts } = await postService.getUserPosts(userId, userRole, tokenUserId, pageno, size);
             if (failure) {

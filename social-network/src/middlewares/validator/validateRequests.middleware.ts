@@ -1,19 +1,33 @@
 import Joi, { Schema } from "joi";
 import { NextFunction, Request, Response } from "express";
-import { iUser } from "../../interfaces/index.interface";
-import { iPost } from "../../interfaces/index.interface";
+import { iUser, iPost } from "../../interfaces/index.interface";
 
 enum validUsers {
     user = 'user',
     moderator = 'moderator'
 }
-
 const validateRequestBody = (req: Request, res: Response, next: NextFunction, joiSchema: Schema) => {
-    const { error } = joiSchema.validate(req.body);
-    if (error) {
-        return res.status(400).send(error.details[0].message);
+    try {
+        const { error } = joiSchema.validate(req.body);
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        }
+        next();
+    } catch (error) {
+        res.status(400).send(error.message);
     }
-    next();
+}
+
+const validateRequestQuery = (req: Request, res: Response, next: NextFunction, joiSchema: Schema) => {
+    try {
+        const { error } = joiSchema.validate(req.query);
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        }
+        next();
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 }
 
 export default {
@@ -63,10 +77,10 @@ export default {
 
     feedQueryParams: (req: Request, res: Response, next: NextFunction) => {
         enum validSort {
-            _createdAt = '_createdAt',
+            createdAt = 'createdAt',
             title = 'title',
             description = 'description',
-            _id = "_id"
+            _id = '_id'
         }
         enum validOrder {
             asc = 'asc',
@@ -78,6 +92,6 @@ export default {
             sortby: Joi.string().valid(...Object.values(validSort)),
             order: Joi.string().valid(...Object.values(validOrder)),
         });
-        validateRequestBody(req, res, next, feedSchema)
+        validateRequestQuery(req, res, next, feedSchema)
     }
 }

@@ -23,8 +23,8 @@ export default {
             const userFollowed: iUser = await userDal.followUser(userId, followUserId);
             Socket.join(followUserId);
             const followSuccess = {
-                message: "User followed.",
-                user: userFollowed
+                message: "You are now following this user.",
+                "Users you follow:": userFollowed.following
             }
             return { followSuccess };
         } catch (error) {
@@ -50,7 +50,8 @@ export default {
             }
             const unfollow: iUser = await userDal.unfollowUser(userId, followUserId);
             const unfollowSuccess = {
-                message: "User unfollowed.", user: unfollow
+                message: "You have unfollowed this user.",
+                "Users you follow:": unfollow.following
             }
             return { unfollowSuccess };
         } catch (error) {

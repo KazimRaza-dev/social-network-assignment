@@ -1,9 +1,9 @@
 import { User } from "../models/index.model";
-import { iUser } from "../interfaces/index.interface";
+import { iUser, iRegisterBody } from "../interfaces/index.interface";
 import { passwordHashing } from "../utils/index.util";
 
 export default {
-    isEmailExists: async (userEmail: string, userRole: string) => {
+    isEmailExists: async (userEmail: string, userRole: string): Promise<iUser> => {
         try {
             const isUserExists: iUser = await User.findOne({ email: userEmail, role: userRole });
             return isUserExists;
@@ -12,7 +12,7 @@ export default {
         }
     },
 
-    register: async (reqUser) => {
+    register: async (reqUser: iRegisterBody): Promise<iUser> => {
         try {
             const newUser: iUser = new User(reqUser);
             const user: iUser = await newUser.save();

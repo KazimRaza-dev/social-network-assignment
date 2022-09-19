@@ -1,8 +1,8 @@
-import { iPost } from "../interfaces/index.interface";
+import { iPost, iPostBody, iEditPostBody } from "../interfaces/index.interface";
 import { Post } from "../models/index.model";
 
 export default {
-    create: async (reqPost): Promise<iPost> => {
+    create: async (reqPost: iPostBody): Promise<iPost> => {
         try {
             const newPost = new Post(reqPost);
             const post: iPost = await newPost.save();
@@ -21,7 +21,7 @@ export default {
         }
     },
 
-    update: async (postId: string, reqPost): Promise<iPost> => {
+    update: async (postId: string, reqPost: iEditPostBody): Promise<iPost> => {
         try {
             const post: iPost = await Post.findByIdAndUpdate(postId, reqPost, {
                 new: true
@@ -50,7 +50,7 @@ export default {
         }
     },
 
-    getUserPosts: async (userId: string, pageNo: number, pageSize: number): Promise<iPost[]> => {
+    getUserPosts: async (userId: string, pageNo = 1, pageSize = 5): Promise<iPost[]> => {
         try {
             const skip: number = (pageNo - 1) * pageSize;
             const userPosts: iPost[] = await Post.find({ userId: userId }).select('title description _createdAt').skip(skip).limit(pageSize);

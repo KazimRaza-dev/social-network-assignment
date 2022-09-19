@@ -34,8 +34,9 @@ const userSchema: Schema = new Schema<iUser>({
         enum: ["user", "moderator"]
     },
     following: {
-        type: [String],
-        required: false
+        type: [Object],
+        required: false,
+        default: []
     }
 }, {
     timestamps: {
@@ -45,7 +46,7 @@ const userSchema: Schema = new Schema<iUser>({
 });
 
 userSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id, email: this.email, name: this.fname + " " + this.lname, role: this.role }, process.env.jwtPrivateKey, { expiresIn: '5h' });
+    const token = jwt.sign({ _id: this._id, email: this.email, name: this.fname + " " + this.lname, role: this.role }, process.env.jwtPrivateKey, { expiresIn: process.env.tokenExpiryTime });
     return token;
 }
 

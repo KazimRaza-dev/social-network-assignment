@@ -1,14 +1,12 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import { userService } from "../services/index.service";
+import { userAuthRequest } from "../interfaces/index.interface";
 
-interface userAuthRequest extends Request {
-    user: any
-}
 export default {
     followUser: async (req: userAuthRequest, res: Response, next: NextFunction) => {
         try {
             const userId = req.user._id;
-            const followUserId = req.body.userId;
+            const followUserId: string = req.body.userId;
             const { followSuccess, followFailure } = await userService.followUser(userId, followUserId);
             if (followFailure) {
                 return res.status(followFailure.statusCode).send(followFailure.message);
@@ -22,7 +20,7 @@ export default {
     unfollowUser: async (req: userAuthRequest, res: Response, next: NextFunction) => {
         try {
             const userId = req.user._id;
-            const followUserId = req.body.userId;
+            const followUserId: string = req.body.userId;
             const { unfollowSuccess, unfollowFailure } = await userService.unfollowUser(userId, followUserId);
             if (unfollowFailure) {
                 return res.status(unfollowFailure.statusCode).send(unfollowFailure.message);

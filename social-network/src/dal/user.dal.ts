@@ -2,7 +2,7 @@ import { User } from "../models/index.model";
 import { iUser } from "../interfaces/index.interface";
 
 export default {
-    isUserExists: async (userId: string) => {
+    isUserExists: async (userId: string): Promise<iUser> => {
         try {
             const user: iUser = await User.findOne({ _id: userId });
             return user;
@@ -11,7 +11,7 @@ export default {
         }
     },
 
-    isFollowing: async (loginUserId: string, followUserId: string) => {
+    isFollowing: async (loginUserId: string, followUserId: string): Promise<iUser> => {
         const user: iUser = await User.findOne()
             .and([{ _id: loginUserId }, { "following": followUserId }]);
         return user;
