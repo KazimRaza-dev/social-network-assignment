@@ -93,5 +93,5 @@ export default {
             order: Joi.string().valid(...Object.values(validOrder)),
         });
         validateRequestQuery(req, res, next, feedSchema)
-    }
+    },
 }

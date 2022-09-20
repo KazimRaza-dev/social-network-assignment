@@ -1,4 +1,4 @@
-import { feedDal } from "../dal/index.dal";
+import { feedDal, paymentDal } from "../dal/index.dal";
 import { responseWrapper } from "../utils/index.util";
 
 export default {
@@ -20,6 +20,19 @@ export default {
             }
             const feedFailure = responseWrapper(400, `No more posts found. Follow more users to view their posts.`);
             return { feedFailure };
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    checkPaymentStatus: async (userId: string) => {
+        try {
+            const payment = await paymentDal.isAlreadyPaid(userId);
+            if (!payment) {
+                const paymentPending = responseWrapper(400, 'Social feed is restricted to Paid users ONLY.')
+                return { paymentPending };
+            }
+            return { payment };
         } catch (error) {
             throw error;
         }
