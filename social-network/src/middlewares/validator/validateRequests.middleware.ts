@@ -94,4 +94,19 @@ export default {
         });
         validateRequestQuery(req, res, next, feedSchema)
     },
+
+    commentRequest: (req: Request, res: Response, next: NextFunction) => {
+        const commentSchema: Schema = Joi.object({
+            comment: Joi.string().required(),
+        })
+        validateRequestBody(req, res, next, commentSchema)
+    },
+
+    commentReply: (req: Request, res: Response, next: NextFunction) => {
+        const commentSchema: Schema = Joi.object({
+            comment: Joi.string().required(),
+            postId: Joi.string().required(),
+        })
+        validateRequestBody(req, res, next, commentSchema)
+    },
 }

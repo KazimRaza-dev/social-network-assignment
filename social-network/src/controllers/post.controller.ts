@@ -92,4 +92,36 @@ export default {
             next(error);
         }
     },
+
+    likePost: async (req: userAuthRequest, res: Response, next: NextFunction) => {
+        try {
+            const userId: string = req.user._id;
+            const postId: string = req.params.id;
+            const { likeSuccess, likeFailure } = await postService.likePost(postId, userId);
+            if (likeFailure) {
+                return res.status(likeFailure.statusCode).send(likeFailure.message);
+            }
+            return res.status(200).send(likeSuccess);
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    dislikePost: async (req: userAuthRequest, res: Response, next: NextFunction) => {
+        try {
+            const userId: string = req.user._id;
+            const postId: string = req.params.id;
+            const { dislikeSuccess, dislikeFailure } = await postService.dislikePost(postId, userId);
+            if (dislikeFailure) {
+                return res.status(dislikeFailure.statusCode).send(dislikeFailure.message);
+            }
+            return res.status(200).send(dislikeSuccess);
+        } catch (error) {
+            next(error);
+        }
+    },
+
+
+
+
 };

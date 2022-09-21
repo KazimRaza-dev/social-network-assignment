@@ -85,6 +85,57 @@ export default {
             throw error;
         }
     },
+
+    likePost: async (postId: string, userId: string) => {
+        try {
+            const exists: iPost = await postDal.isPostExists(postId)
+            if (!exists) {
+                const likeFailure = responseWrapper(404, `Post with Id ${postId} does not Exists.`);
+                return { likeFailure };
+            }
+            const post: iPost = await postDal.isAlreadyLiked(postId, userId)
+            if (post) {
+                const likeFailure = responseWrapper(200, 'Like removed from this post');
+                return { likeFailure };
+            }
+
+            //if user has already dislike the post, remove the dislike first then like that post.
+            await postDal.isAlreadyDisliked(postId, userId);
+            const postLiked: iPost = await postDal.likePost(postId, userId);
+            const count = postLiked.likes.length;
+            const likeSuccess = {
+                message: "You have liked this post.", "likes Count": count, "Likes on Post": postLiked.likes
+            }
+            return { likeSuccess };
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    dislikePost: async (postId: string, userId: string) => {
+        try {
+            const exists: iPost = await postDal.isPostExists(postId)
+            if (!exists) {
+                const dislikeFailure = responseWrapper(404, `Post with Id ${postId} does not Exists.`);
+                return { dislikeFailure };
+            }
+            const post: iPost = await postDal.isAlreadyDisliked(postId, userId)
+            if (post) {
+                const dislikeFailure = responseWrapper(200, 'Dislike removed from this post');
+                return { dislikeFailure };
+            }
+            //if user has already like the post, remove the like first then dislike that post.
+            await postDal.isAlreadyLiked(postId, userId);
+            const postDisliked: iPost = await postDal.dislikePost(postId, userId);
+            const count = postDisliked.dislikes.length;
+            const dislikeSuccess = {
+                message: "You have disliked this post.", "Dislikes Count": count, "Dislikes on Post": postDisliked.dislikes
+            }
+            return { dislikeSuccess };
+        } catch (error) {
+            throw error;
+        }
+    },
 };
 
 const checkUserAccess = async (postId: string, tokenUserId: string, userRole: string, operation: string) => {

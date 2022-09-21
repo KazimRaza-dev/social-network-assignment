@@ -60,4 +60,51 @@ export default {
         }
     },
 
+    isAlreadyLiked: async (postId: string, userId: string): Promise<iPost> => {
+        const post: iPost = await Post.findOne()
+            .and([{ _id: postId }, { "likes": { $in: [userId] } }]);
+
+        if (post) {
+            await Post.findByIdAndUpdate(post, {
+                $pull: { likes: userId },
+            }, { new: true });
+        }
+        return post;
+    },
+
+    likePost: async (postId: string, userId: string) => {
+        try {
+            const postLiked = await Post.findByIdAndUpdate(postId, {
+                $push: { likes: userId }
+            }, { new: true });
+            return postLiked;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    isAlreadyDisliked: async (postId: string, userId: string): Promise<iPost> => {
+        const post: iPost = await Post.findOne()
+            .and([{ _id: postId }, { "dislikes": { $in: [userId] } }]);
+        if (post) {
+            await Post.findByIdAndUpdate(post, {
+                $pull: { dislikes: userId },
+            }, { new: true });
+        }
+        return post;
+    },
+
+    dislikePost: async (postId: string, userId: string) => {
+        try {
+            const postdisLiked = await Post.findByIdAndUpdate(postId, {
+                $push: { dislikes: userId }
+            }, { new: true });
+            return postdisLiked;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+
+
 }

@@ -3,5 +3,6 @@ import postController from "./post.controller";
 import feedController from "./feed.controller";
 import authController from "./auth.controller";
 import paymentController from "./payment.controller";
+import commentController from "./comment.controller";
 
-export { authController, userController, postController, feedController, paymentController };
+export { authController, userController, postController, feedController, paymentController, commentController };

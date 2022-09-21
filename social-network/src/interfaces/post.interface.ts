@@ -8,6 +8,8 @@ interface iPost {
         type: Types.ObjectId,
         ref: "users"
     },
+    likes: string[],
+    dislikes: string[],
     createdAt?: Date,
     updatedAt?: Date
 }

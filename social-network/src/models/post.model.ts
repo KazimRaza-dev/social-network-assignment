@@ -15,6 +15,14 @@ const postSchema: Schema = new Schema<iPost>({
         type: Types.ObjectId,
         ref: "users",
         required: true
+    },
+    likes: {
+        type: [String],
+        required: true,
+    },
+    dislikes: {
+        type: [String],
+        required: true,
     }
 }, {
     timestamps: {
