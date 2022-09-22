@@ -14,4 +14,6 @@ commentRouter.get("/show-replies/:id", userAuth, commentController.showCommentRe
 
 commentRouter.patch("/like/:id", userAuth, commentController.likeComment);
 
+commentRouter.get("/display-all/:postId", userAuth, commentController.postCommentsReplies);
+
 export default commentRouter;

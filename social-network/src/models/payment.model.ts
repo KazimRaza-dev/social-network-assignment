@@ -32,7 +32,7 @@ const paymentSchema: Schema = new Schema<iPayment>({
     },
     userId: {
         type: Types.ObjectId,
-        ref: "users",
+        ref: "user",
         required: true
     }
 }, {

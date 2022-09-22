@@ -101,4 +101,27 @@ export default {
             throw error;
         }
     },
+
+    postCommentsReplies: async (postId: string, pageno: string, pageSize: string) => {
+        try {
+            const exists: iPost = await postDal.isPostExists(postId)
+            if (!exists) {
+                const commentFailure: iResponse = responseWrapper(404, `Post with Id ${postId} does not Exists.`);
+                return { commentFailure };
+            }
+            const pageNo = pageno && parseInt(pageno);
+            const size = pageSize && parseInt(pageSize);
+            const comments = await commentDal.postCommentsReplies(postId, pageNo, size);
+            if (comments.length > 0) {
+                const commentSuccess = {
+                    comments: comments
+                }
+                return { commentSuccess };
+            }
+            const commentFailure: iResponse = responseWrapper(404, `No more comments found on this post.`);
+            return { commentFailure };
+        } catch (error) {
+            throw error;
+        }
+    },
 };

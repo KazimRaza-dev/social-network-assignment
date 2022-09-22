@@ -13,7 +13,7 @@ const postSchema: Schema = new Schema<iPost>({
     },
     userId: {
         type: Types.ObjectId,
-        ref: "users",
+        ref: "user",
         required: true
     },
     likes: {

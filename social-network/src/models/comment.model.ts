@@ -12,17 +12,17 @@ const commentSchema: Schema = new Schema<iComment>({
     },
     userId: {
         type: Types.ObjectId,
-        ref: "users",
+        ref: "user",
         required: true
     },
     postId: {
         type: Types.ObjectId,
-        ref: "posts",
+        ref: "post",
         required: true
     },
     parentCommentId: {
         type: Types.ObjectId,
-        ref: "comments",
+        ref: "comment",
         default: null
     }
 
