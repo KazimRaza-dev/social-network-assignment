@@ -63,11 +63,8 @@ export default {
     isAlreadyLiked: async (postId: string, userId: string): Promise<iPost> => {
         const post: iPost = await Post.findOne()
             .and([{ _id: postId }, { "likes": { $in: [userId] } }]);
-
         if (post) {
-            await Post.findByIdAndUpdate(post, {
-                $pull: { likes: userId },
-            }, { new: true });
+            await Post.findByIdAndUpdate(postId, { $pull: { likes: userId }, }, { new: true });
         }
         return post;
     },
@@ -87,7 +84,7 @@ export default {
         const post: iPost = await Post.findOne()
             .and([{ _id: postId }, { "dislikes": { $in: [userId] } }]);
         if (post) {
-            await Post.findByIdAndUpdate(post, {
+            await Post.findByIdAndUpdate(postId, {
                 $pull: { dislikes: userId },
             }, { new: true });
         }

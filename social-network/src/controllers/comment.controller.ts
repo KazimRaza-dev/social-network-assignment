@@ -8,11 +8,8 @@ export default {
             const userId = req.user._id;
             const postId = req.params.postId;
             const { comment } = req.body;
-            const { commentSuccess, commentFailure } = await commentService.createPostComment(userId, postId, comment);
-            if (commentFailure) {
-                return res.status(commentFailure.statusCode).send(commentFailure.message);
-            }
-            return res.status(200).send(commentSuccess);
+            const commentResult = await commentService.createPostComment(userId, postId, comment);
+            return res.status(commentResult.statusCode).send(commentResult.message);
         } catch (error) {
             next(error);
         }
@@ -21,7 +18,9 @@ export default {
     showPostComments: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const postId = req.params.postId;
-            const { commentSuccess, commentFailure } = await commentService.showPostComments(postId);
+            const pageNo = req.query.pageNo as string;
+            const size = req.query.size as string;
+            const { commentSuccess, commentFailure } = await commentService.showPostComments(postId, pageNo, size);
             if (commentFailure) {
                 return res.status(commentFailure.statusCode).send(commentFailure.message);
             }
@@ -36,11 +35,8 @@ export default {
             const userId = req.user._id;
             const commentId = req.params.id;
             const { comment, postId } = req.body;
-            const { commentSuccess, commentFailure } = await commentService.createCommentReply(userId, postId, commentId, comment);
-            if (commentFailure) {
-                return res.status(commentFailure.statusCode).send(commentFailure.message);
-            }
-            return res.status(200).send(commentSuccess);
+            const replyResult = await commentService.createCommentReply(userId, postId, commentId, comment);
+            return res.status(replyResult.statusCode).send(replyResult.message);
         } catch (error) {
             next(error);
         }
@@ -59,6 +55,18 @@ export default {
         }
     },
 
-
+    likeComment: async (req: userAuthRequest, res: Response, next: NextFunction) => {
+        try {
+            const userId: string = req.user._id;
+            const commentId: string = req.params.id;
+            const { likeSuccess, likeFailure } = await commentService.likeComment(commentId, userId);
+            if (likeFailure) {
+                return res.status(likeFailure.statusCode).send(likeFailure.message);
+            }
+            return res.status(200).send(likeSuccess);
+        } catch (error) {
+            next(error);
+        }
+    },
 
 };

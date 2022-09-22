@@ -12,9 +12,11 @@ export default {
         }
     },
 
-    showPostComments: async (postId: string) => {
+    showPostComments: async (postId: string, pageNo = 1, pageSize = 5) => {
         try {
-            const comments = await Comment.find({ postId: postId, parentCommentId: null });
+            const skip: number = (pageNo - 1) * pageSize;
+            const comments = await Comment.find({ postId: postId, parentCommentId: null })
+                .limit(pageSize).skip(skip);
             return comments;
         } catch (error) {
             throw error;
@@ -25,7 +27,6 @@ export default {
         try {
             const comment = await Comment.findOne()
                 .and([{ "_id": commentId }, { "postId": postId }])
-
             return comment;
         } catch (error) {
             throw error;
@@ -49,4 +50,24 @@ export default {
             throw error;
         }
     },
+
+    isAlreadyLiked: async (commentId: string, userId: string): Promise<iComment> => {
+        const comment: iComment = await Comment.findOne()
+            .and([{ _id: commentId }, { "likes": { $in: [userId] } }]);
+        if (comment) {
+            await Comment.findByIdAndUpdate(commentId, { $pull: { likes: userId }, });
+        }
+        return comment;
+    },
+
+    likeComment: async (commentId: string, userId: string) => {
+        try {
+            const commentLiked = await Comment.findByIdAndUpdate(commentId, {
+                $push: { likes: userId }
+            }, { new: true });
+            return commentLiked;
+        } catch (error) {
+            throw error;
+        }
+    }
 }

@@ -12,4 +12,6 @@ commentRouter.post("/reply/:id", userAuth, validate.commentReply, commentControl
 
 commentRouter.get("/show-replies/:id", userAuth, commentController.showCommentReplies);
 
+commentRouter.patch("/like/:id", userAuth, commentController.likeComment);
+
 export default commentRouter;
