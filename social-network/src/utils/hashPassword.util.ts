@@ -11,7 +11,7 @@ const passwordHashing = {
         }
     },
 
-    unhashPassword: async (userPassword: string, dbHashPassword): Promise<boolean> => {
+    comparePassword: async (userPassword: string, dbHashPassword): Promise<boolean> => {
         const isPasswordCorrect: boolean = await compare(userPassword, dbHashPassword);
         return isPasswordCorrect;
     }

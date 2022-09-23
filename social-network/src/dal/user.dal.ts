@@ -1,4 +1,4 @@
-import { User } from "../models/index.model";
+import { User } from "./models/index.model";
 import { iUser } from "../interfaces/index.interface";
 
 export default {

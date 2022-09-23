@@ -1,4 +1,4 @@
-import { Comment } from "../models/index.model";
+import { Comment } from "./models/index.model";
 import { iComment } from "../interfaces/index.interface";
 
 export default {

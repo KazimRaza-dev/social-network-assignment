@@ -9,7 +9,7 @@ export default {
             const postId = req.params.postId;
             const { comment } = req.body;
             const commentResult = await commentService.createPostComment(userId, postId, comment);
-            return res.status(commentResult.statusCode).send(commentResult.message);
+            return res.status(commentResult.statusCode).send({ message: commentResult.message });
         } catch (error) {
             next(error);
         }
@@ -22,9 +22,9 @@ export default {
             const size = req.query.size as string;
             const { commentSuccess, commentFailure } = await commentService.showPostComments(postId, pageNo, size);
             if (commentFailure) {
-                return res.status(commentFailure.statusCode).send(commentFailure.message);
+                return res.status(commentFailure.statusCode).send({ message: commentFailure.message });
             }
-            return res.status(200).send(commentSuccess.comments);
+            return res.status(200).send({ comments: commentSuccess.comments });
         } catch (error) {
             next(error);
         }
@@ -36,7 +36,7 @@ export default {
             const commentId = req.params.id;
             const { comment, postId } = req.body;
             const replyResult = await commentService.createCommentReply(userId, postId, commentId, comment);
-            return res.status(replyResult.statusCode).send(replyResult.message);
+            return res.status(replyResult.statusCode).send({ message: replyResult.message });
         } catch (error) {
             next(error);
         }
@@ -47,9 +47,9 @@ export default {
             const commentId = req.params.id;
             const { commentSuccess, commentFailure } = await commentService.showCommentReplies(commentId);
             if (commentFailure) {
-                return res.status(commentFailure.statusCode).send(commentFailure.message);
+                return res.status(commentFailure.statusCode).send({ message: commentFailure.message });
             }
-            return res.status(200).send(commentSuccess.replies);
+            return res.status(200).send({ Replies: commentSuccess.replies });
         } catch (error) {
             next(error);
         }
@@ -61,7 +61,7 @@ export default {
             const commentId: string = req.params.id;
             const { likeSuccess, likeFailure } = await commentService.likeComment(commentId, userId);
             if (likeFailure) {
-                return res.status(likeFailure.statusCode).send(likeFailure.message);
+                return res.status(likeFailure.statusCode).send({ message: likeFailure.message });
             }
             return res.status(200).send(likeSuccess);
         } catch (error) {
@@ -76,9 +76,9 @@ export default {
             const size = req.query.size as string;
             const { commentSuccess, commentFailure } = await commentService.postCommentsReplies(postId, pageNo, size);
             if (commentFailure) {
-                return res.status(commentFailure.statusCode).send(commentFailure.message);
+                return res.status(commentFailure.statusCode).send({ message: commentFailure.message });
             }
-            return res.status(200).send(commentSuccess.comments);
+            return res.status(200).send({ comments: commentSuccess.comments });
         } catch (error) {
             next(error);
         }

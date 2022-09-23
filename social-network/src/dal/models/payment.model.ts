@@ -1,5 +1,5 @@
 import { Schema, Types, model, Model } from "mongoose";
-import { iPayment } from "../interfaces/index.interface";
+import { iPayment } from "../../interfaces/index.interface";
 
 const paymentSchema: Schema = new Schema<iPayment>({
     stripeId: {

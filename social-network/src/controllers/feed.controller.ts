@@ -8,7 +8,7 @@ export default {
             const userId = req.user._id;
             const { paymentPending } = await feedService.checkPaymentStatus(userId);
             if (paymentPending) {
-                return res.status(paymentPending.statusCode).send(paymentPending.message);
+                return res.status(paymentPending.statusCode).send({ message: paymentPending.message });
             }
             const pageno: string = req.query.pageno as string;
             const size: string = req.query.size as string;
@@ -16,13 +16,11 @@ export default {
             const order: string = req.query.order as string;
             const { feed, feedFailure } = await feedService.showFeed(userId, pageno, size, sortby, order);
             if (feedFailure) {
-                return res.status(feedFailure.statusCode).send(feedFailure.message);
+                return res.status(feedFailure.statusCode).send({ message: feedFailure.message });
             }
             return res.status(200).send(feed);
         } catch (error) {
             next(error);
         }
     }
-
-
 };

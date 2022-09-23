@@ -1,5 +1,5 @@
 import { iPost, iUser } from "../interfaces/index.interface";
-import { Post, User } from "../models/index.model";
+import { Post, User } from "./models/index.model";
 
 export default {
     isUserExists: async (userId: string): Promise<iUser> => {

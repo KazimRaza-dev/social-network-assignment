@@ -1,5 +1,5 @@
 import { iPost, iPostBody, iEditPostBody } from "../interfaces/index.interface";
-import { Post } from "../models/index.model";
+import { Post } from "./models/index.model";
 
 export default {
     create: async (reqPost: iPostBody): Promise<iPost> => {
@@ -53,7 +53,7 @@ export default {
     getUserPosts: async (userId: string, pageNo = 1, pageSize = 5): Promise<iPost[]> => {
         try {
             const skip: number = (pageNo - 1) * pageSize;
-            const userPosts: iPost[] = await Post.find({ userId: userId }).select('title description _createdAt').skip(skip).limit(pageSize);
+            const userPosts: iPost[] = await Post.find({ userId: userId }).select('title description likes dislikes _createdAt').skip(skip).limit(pageSize);
             return userPosts;
         } catch (error) {
             throw error;

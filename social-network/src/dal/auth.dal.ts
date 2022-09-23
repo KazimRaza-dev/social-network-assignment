@@ -1,4 +1,4 @@
-import { User } from "../models/index.model";
+import { User } from "./models/index.model";
 import { iUser, iRegisterBody } from "../interfaces/index.interface";
 import { passwordHashing } from "../utils/index.util";
 
@@ -26,7 +26,7 @@ export default {
         try {
             const user: iUser = await User.findOne({ email: email, role: userRole });
             if (user) {
-                const isPasswordCorrect = await passwordHashing.unhashPassword(password, user.password);
+                const isPasswordCorrect = await passwordHashing.comparePassword(password, user.password);
                 if (isPasswordCorrect) {
                     return user;
                 }

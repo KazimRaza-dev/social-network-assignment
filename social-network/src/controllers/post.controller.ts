@@ -10,8 +10,8 @@ export default {
             const reqPost: iPostBody = pick(req.body, ['title', 'description']);
             reqPost.userId = req.user._id;
             const { newPost } = await postService.createPost(reqPost);
-            res.status(200).json({
-                "message": newPost.message
+            res.status(200).send({
+                message: newPost.message
             });
         }
         catch (error) {
@@ -25,12 +25,11 @@ export default {
             const userRole: string = req.user.role;
             const postId: string = req.params.id;
             const reqPost: iEditPostBody = req.body;
-
             const { post, failure } = await postService.update(postId, reqPost, tokenUserId, userRole);
             if (failure) {
-                return res.status(failure.statusCode).send(failure.message);
+                return res.status(failure.statusCode).send({ message: failure.message });
             }
-            return res.status(200).json({
+            return res.status(200).send({
                 message: post.message, post: post.updated
             })
         }
@@ -47,7 +46,7 @@ export default {
 
             const { post, failure } = await postService.delete(postId, tokenUserId, userRole);
             if (failure) {
-                return res.status(failure.statusCode).send(failure.message);
+                return res.status(failure.statusCode).send({ message: failure.message });
             }
             return res.status(200).json({
                 message: post.message
@@ -65,9 +64,9 @@ export default {
             const postId: string = req.params.id;
             const { post, failure } = await postService.getSinglePost(postId, tokenUserId, userRole);
             if (failure) {
-                return res.status(failure.statusCode).send(failure.message);
+                return res.status(failure.statusCode).send({ message: failure.message });
             }
-            return res.status(200).json(post)
+            return res.status(200).json({ post: post })
         }
         catch (error) {
             next(error);
@@ -84,9 +83,9 @@ export default {
 
             const { failure, posts } = await postService.getUserPosts(userId, userRole, tokenUserId, pageno, size);
             if (failure) {
-                return res.status(failure.statusCode).send(failure.message);
+                return res.status(failure.statusCode).send({ message: failure.message });
             }
-            return res.status(200).send(posts.usertasks);
+            return res.status(200).send({ posts: posts.usertasks });
         }
         catch (error) {
             next(error);
@@ -99,7 +98,7 @@ export default {
             const postId: string = req.params.id;
             const { likeSuccess, likeFailure } = await postService.likePost(postId, userId);
             if (likeFailure) {
-                return res.status(likeFailure.statusCode).send(likeFailure.message);
+                return res.status(likeFailure.statusCode).send({ message: likeFailure.message });
             }
             return res.status(200).send(likeSuccess);
         } catch (error) {
@@ -113,15 +112,11 @@ export default {
             const postId: string = req.params.id;
             const { dislikeSuccess, dislikeFailure } = await postService.dislikePost(postId, userId);
             if (dislikeFailure) {
-                return res.status(dislikeFailure.statusCode).send(dislikeFailure.message);
+                return res.status(dislikeFailure.statusCode).send({ message: dislikeFailure.message });
             }
             return res.status(200).send(dislikeSuccess);
         } catch (error) {
             next(error);
         }
     },
-
-
-
-
 };

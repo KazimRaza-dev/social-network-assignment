@@ -1,4 +1,4 @@
-import { Payment } from "../models/index.model";
+import { Payment } from "./models/index.model";
 import { iPayment } from "../interfaces/index.interface";
 
 export default {

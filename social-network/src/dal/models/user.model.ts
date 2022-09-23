@@ -1,5 +1,5 @@
 import { Schema, Model, model } from "mongoose";
-import { iUser } from "../interfaces/index.interface";
+import { iUser } from "../../interfaces/index.interface";
 import jwt from "jsonwebtoken";
 
 const userSchema: Schema = new Schema<iUser>({

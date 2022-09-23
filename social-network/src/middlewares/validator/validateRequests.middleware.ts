@@ -10,11 +10,11 @@ const validateRequestBody = (req: Request, res: Response, next: NextFunction, jo
     try {
         const { error } = joiSchema.validate(req.body);
         if (error) {
-            return res.status(400).send(error.details[0].message);
+            return res.status(400).send({ message: error.details[0].message });
         }
         next();
     } catch (error) {
-        res.status(400).send(error.message);
+        res.status(400).send({ message: error.message });
     }
 }
 
@@ -22,11 +22,11 @@ const validateRequestQuery = (req: Request, res: Response, next: NextFunction, j
     try {
         const { error } = joiSchema.validate(req.query);
         if (error) {
-            return res.status(400).send(error.details[0].message);
+            return res.status(400).send({ message: error.details[0].message });
         }
         next();
     } catch (error) {
-        res.status(400).send(error.message);
+        res.status(400).send({ message: error.message });
     }
 }
 

@@ -67,7 +67,7 @@ export default {
     getUserPosts: async (userId: string, userRole: string, tokenUserId: string, pageno: string, pageSize: string) => {
         try {
             if (userRole === "user" && tokenUserId !== userId) {
-                const failure = responseWrapper(400, "You cannot view other User's tasks.")
+                const failure = responseWrapper(400, "You cannot view other User's posts.")
                 return { failure };
             }
             const pageNo = pageno && parseInt(pageno);
