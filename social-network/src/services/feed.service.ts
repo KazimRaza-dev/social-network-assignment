@@ -2,6 +2,16 @@ import { feedDal, paymentDal } from "../dal/index.dal";
 import { responseWrapper } from "../utils/index.util";
 
 export default {
+    /**
+     * Show social feed to user
+     *
+     * @param userId Id of user who wants to view the social feed
+     * @param pageno Page number for paginating records 
+     * @param size Size of page
+     * @param sortby Field to sort the records  
+     * @param order Order of sorting
+     * @returns Posts of the following users or failure message along with the status code
+     */
     showFeed: async (userId: string, pageno: string, size: string, sortby: string, order: string) => {
         try {
             const pageNo = pageno && parseInt(pageno);
@@ -25,6 +35,12 @@ export default {
         }
     },
 
+    /**
+     * Check if the user has paid for social feed or not
+     *
+     * @param userId Id of user who wants to view the social feed
+     * @returns Payment object if exists else the failure message
+     */
     checkPaymentStatus: async (userId: string) => {
         try {
             const payment = await paymentDal.isAlreadyPaid(userId);

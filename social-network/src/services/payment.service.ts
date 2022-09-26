@@ -8,6 +8,12 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 });
 
 export default {
+    /**
+     * Create a session for stripe payment
+     *
+     * @param userId Id of logged in user
+     * @returns Stripe session object for making payment    
+     */
     createStripeSession: async (userId: string): Promise<Stripe.Response<Stripe.Checkout.Session>> => {
         try {
             const session = await stripe.checkout.sessions.create({
@@ -34,6 +40,13 @@ export default {
         }
     },
 
+    /**
+     * Store the payment record in database after successful payment through stripe checkout
+     *
+     * @param session Session object after successful payment
+     * @param userId Id of logged in user that makes the payment
+     * @returns Success message after storing the payment record in database
+     */
     createPayment: async (session, userId) => {
         try {
             const newPayment: iPayment = {
@@ -51,6 +64,12 @@ export default {
         }
     },
 
+    /**
+     * Check whether user has already paid for social feed or not   
+     *
+     * @param userId Id of logged in user
+     * @returns boolean value showing whether user has already paid or not
+     */
     isAlreadyPaid: async (userId: string): Promise<boolean> => {
         try {
             const payment: iPayment = await paymentDal.isAlreadyPaid(userId);

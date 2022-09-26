@@ -39,12 +39,13 @@ const userSchema: Schema = new Schema<iUser>({
         default: []
     }
 }, {
-    timestamps: {
-        createdAt: '_createdAt',
-        updatedAt: '_updatedAt'
-    }
+    timestamps: true
 });
-
+/**
+ * This method generates jwt authentication token for a user at time of registration or login
+ * 
+ * @returns jwt token for a user
+ */
 userSchema.methods.generateAuthToken = function () {
     const token = jwt.sign({ _id: this._id, email: this.email, name: this.fname + " " + this.lname, role: this.role }, process.env.jwtPrivateKey, { expiresIn: process.env.tokenExpiryTime });
     return token;

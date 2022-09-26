@@ -4,6 +4,15 @@ import { authService } from "../services/index.service";
 import { iRegisterBody, iLoginBody } from "../interfaces/index.interface";
 
 export default {
+    /**
+     * Register a new user 
+     *  
+     * @param req The request  
+     * @param res The reponse   
+     * @param next Method to call the next middleware
+     * @returns Response with status code and success or failure message
+     * and jwt authentication token in response header only in case of successful register.
+     */
     register: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const userToRegister: iRegisterBody = pick(req.body, ['email', 'password', 'fname', 'lname', 'phoneNo', 'role']);
@@ -21,6 +30,15 @@ export default {
         }
     },
 
+    /**
+     * Login User
+     * 
+     * @param req The request  
+     * @param res The reponse   
+     * @param next Method to call the next middleware
+     * @returns Response object with status code and success or failure message
+     * and jwt authentication token in response header only in case of successful login.
+     */
     login: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const user: iLoginBody = pick(req.body, ["email", "password", "role"]);
@@ -38,4 +56,4 @@ export default {
             next(error);
         }
     },
-}
+};

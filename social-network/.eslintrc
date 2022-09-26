@@ -5,7 +5,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jsdoc/recommended"
   ],
   "rules": {
     "no-console": "off",
@@ -19,6 +20,9 @@
     "no-useless-catch": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/no-var-requires": "off"
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "jsdoc/require-param-type": "off",
+    "jsdoc/require-returns-type": "off"
   }
 }

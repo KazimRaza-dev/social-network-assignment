@@ -2,10 +2,22 @@ import Joi, { Schema } from "joi";
 import { NextFunction, Request, Response } from "express";
 import { iUser, iPost } from "../../interfaces/index.interface";
 
+/**
+ * Enum for valid user roles allowed
+ */
 enum validUsers {
     user = 'user',
     moderator = 'moderator'
 }
+/**
+ * Generic method to validate the request body
+ *
+ * @param req The request
+ * @param res The reponse
+ * @param next Method to call the next middleware
+ * @param joiSchema Schema that is used to validate the request body
+ * @returns Error message if the validation fail or call the next middleware
+ */
 const validateRequestBody = (req: Request, res: Response, next: NextFunction, joiSchema: Schema) => {
     try {
         const { error } = joiSchema.validate(req.body);
@@ -18,6 +30,15 @@ const validateRequestBody = (req: Request, res: Response, next: NextFunction, jo
     }
 }
 
+/**
+ * Generic method to validate the request Query
+ *
+ * @param req The request
+ * @param res The reponse
+ * @param next Method to call the next middleware
+ * @param joiSchema Schema that is used to validate the request query
+ * @returns Error message if the validation fail or call the next middleware
+ */
 const validateRequestQuery = (req: Request, res: Response, next: NextFunction, joiSchema: Schema) => {
     try {
         const { error } = joiSchema.validate(req.query);

@@ -3,6 +3,14 @@ import { feedService } from "../services/index.service";
 import { userAuthRequest } from "../interfaces/index.interface";
 
 export default {
+    /**
+     * Show social feed to user that contains posts posted by the followed users
+     * 
+     * @param req The request  
+     * @param res The reponse   
+     * @param next Method to call the next middleware
+     * @returns List of posts if exists for a user or the failure message
+     */
     showFeed: async (req: userAuthRequest, res: Response, next: NextFunction) => {
         try {
             const userId = req.user._id;

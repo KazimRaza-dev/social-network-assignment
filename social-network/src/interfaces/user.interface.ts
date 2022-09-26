@@ -9,8 +9,8 @@ interface iUser extends Document {
     phoneNo: string,
     role: string,
     following?: string[],
-    _createdAt?: Date,
-    _updatedAt?: Date,
+    createdAt?: Date,
+    updatedAt?: Date,
     generateAuthToken: Function,
 }
 

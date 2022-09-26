@@ -11,7 +11,7 @@ config();
 connectToMongoDb();
 checkEnvVariables();
 
-const PORT: number = parseInt(process.env.PORT as string, 10);
+let PORT: number = parseInt(process.env.PORT as string, 10);
 const corsOptions: CorsOptions = {
     origin: `http://localhost:${PORT}`,
     methods: "HEAD, PUT, PATCH, POST, DELETE",
@@ -27,4 +27,4 @@ app.use(handleError);
 
 server.listen(PORT, () => {
     console.log(`Server is listening at port ${PORT}`);
-})
+});

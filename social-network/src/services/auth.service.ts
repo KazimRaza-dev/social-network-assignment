@@ -5,6 +5,12 @@ import { iResponse, iRegisterBody, iLoginBody } from "../interfaces/index.interf
 import { Socket } from "../sockets/index.sockets";
 
 export default {
+    /**
+     * Register a new user
+     *
+     * @param userToRegister User to be registered
+     * @returns User object with message and jwt token or failure object with failure message and status code
+     */
     register: async (userToRegister: iRegisterBody) => {
         try {
             const isUserExists: iUser = await authDal.isEmailExists(userToRegister.email, userToRegister.role)
@@ -27,6 +33,12 @@ export default {
         }
     },
 
+    /**
+     * Check login credientials of user
+     *
+     * @param reqUser User object to login
+     * @returns Success message and jwt token in case of successfully login or failure message and status code is code of failure   
+     */
     login: async (reqUser: iLoginBody) => {
         try {
             const user: iUser = await authDal.login(reqUser.email, reqUser.password, reqUser.role);

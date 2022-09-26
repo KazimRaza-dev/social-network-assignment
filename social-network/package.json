@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "lint": "eslint . --ext .ts",
-    "lint-and-fix": "eslint . --ext .ts --fix"
+    "lint-and-fix": "eslint . --ext .ts --fix",
+    "jsdoc": "jsdoc -c jsdoc.json"
   },
   "author": "kazim Raza",
   "license": "ISC",
@@ -34,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
     "eslint": "^8.23.1",
+    "eslint-plugin-jsdoc": "^39.3.6",
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.3"

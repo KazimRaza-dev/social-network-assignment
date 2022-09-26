@@ -3,6 +3,14 @@ import { userService } from "../services/index.service";
 import { userAuthRequest } from "../interfaces/index.interface";
 
 export default {
+    /**
+     * Follow any existing user
+     * 
+     * @param req The request along with the jwt token of the user passed in request header
+     * @param res The response
+     * @param next Method to call the next middleware
+     * @returns List of followed users or the failure message
+     */
     followUser: async (req: userAuthRequest, res: Response, next: NextFunction) => {
         try {
             const userId = req.user._id;
@@ -16,7 +24,14 @@ export default {
             next(error);
         }
     },
-
+    /**
+     * Unfollow already followed user
+     * 
+     * @param req The request along with the jwt token of the user passed in request header
+     * @param res The response
+     * @param next Method to call the next middleware
+     * @returns List of followed users or the failure message
+     */
     unfollowUser: async (req: userAuthRequest, res: Response, next: NextFunction) => {
         try {
             const userId = req.user._id;

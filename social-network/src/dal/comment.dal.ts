@@ -1,7 +1,14 @@
 import { Comment } from "./models/index.model";
 import { iComment } from "../interfaces/index.interface";
+import mongoose, { ObjectId } from "mongoose";
 
 export default {
+    /**
+     * Add a new comment against a post
+     * 
+     * @param postComment New comment passed in request body
+     * @returns Comment after adding it to database
+     */
     createPostComment: async (postComment): Promise<iComment> => {
         try {
             const newComment = new Comment(postComment);
@@ -11,7 +18,14 @@ export default {
             throw error;
         }
     },
-
+    /**
+     * Show all comments of a particular post
+     * 
+     * @param postId Id of post
+     * @param pageNo Page number passed in query string for paginating records
+     * @param pageSize Page size passed in query string for pagination
+     * @returns Comments belong to particular post
+     */
     showPostComments: async (postId: string, pageNo = 1, pageSize = 5): Promise<iComment[]> => {
         try {
             const skip: number = (pageNo - 1) * pageSize;
@@ -22,7 +36,13 @@ export default {
             throw error;
         }
     },
-
+    /**
+     * Check whether comment belongs to post or not
+     * 
+     * @param commentId Id of comment
+     * @param postId Id of post
+     * @returns Comment if comment Id and post Id are correct
+     */
     isPostComment: async (commentId: string, postId: string): Promise<iComment> => {
         try {
             const comment = await Comment.findOne()
@@ -32,7 +52,12 @@ export default {
             throw error;
         }
     },
-
+    /**
+     * Check whether a comment exists in database or not    
+     * 
+     * @param commentId Id of comment
+     * @returns comment if it exists
+     */
     isCommentExists: async (commentId: string): Promise<iComment> => {
         try {
             const comment = await Comment.findById(commentId);
@@ -41,7 +66,12 @@ export default {
             throw error;
         }
     },
-
+    /**
+     * Give all replies of a specific comment
+     * 
+     * @param commentId Id of comment
+     * @returns Replies of a comment
+     */
     showCommentReplies: async (commentId: string): Promise<iComment[]> => {
         try {
             const comments = await Comment.find({ parentCommentId: commentId });
@@ -50,7 +80,13 @@ export default {
             throw error;
         }
     },
-
+    /**
+     * Check whether a specific user has already liked a comment, if he already liked then remove his like from comment
+     * 
+     * @param commentId Id of comment
+     * @param userId Id of user
+     * @returns Comment if it exists
+     */
     isAlreadyLiked: async (commentId: string, userId: string): Promise<iComment> => {
         const comment: iComment = await Comment.findOne()
             .and([{ _id: commentId }, { "likes": { $in: [userId] } }]);
@@ -59,7 +95,13 @@ export default {
         }
         return comment;
     },
-
+    /**
+     * Like a comment
+     * 
+     * @param commentId Id of comment
+     * @param userId Id of user
+     * @returns comment after adding the user in likes array of that comment
+     */
     likeComment: async (commentId: string, userId: string): Promise<iComment> => {
         try {
             const commentLiked = await Comment.findByIdAndUpdate(commentId, {
@@ -70,21 +112,41 @@ export default {
             throw error;
         }
     },
-
+    /**
+     * Give comments and replies posted on a post
+     * 
+     * @param postId Id of post
+     * @param pageNo page number passed in query string for paginating records
+     * @param pageSize page size passed in query string for pagination
+     * @returns All comments and replies of a post
+     */
     postCommentsReplies: async (postId: string, pageNo = 1, pageSize = 5) => {
         try {
             const skip: number = (pageNo - 1) * pageSize;
-            const comments = await Comment.find({ postId: postId, parentCommentId: null })
-                .limit(pageSize).skip(skip);
-            const commentReplies = Promise.all(
-                comments.map(async (single) => {
-                    const singleComment = { userId: single.userId, comment: single.comment, 'Total likes': single.likes.length, 'posted At': single.postedAt, replies: [] }
-                    const replies = await Comment.find({ parentCommentId: single._id }).select('userId comment likes postedAt')
-                    singleComment.replies = replies;
-                    return singleComment;
-                })
-            )
-            return commentReplies;
+            const id = new mongoose.Types.ObjectId(postId);
+            const comments = await Comment.aggregate([
+                { $match: { parentCommentId: null, postId: id } },
+                {
+                    $graphLookup: {
+                        from: "comments",
+                        startWith: "$_id",
+                        connectFromField: "_id",
+                        connectToField: "parentCommentId",
+                        maxDepth: 5,
+                        as: "Replies",
+                    }
+                },
+                { $unwind: "$Replies" },
+                {
+                    $group: {
+                        _id: '$Replies.parentCommentId',
+                        replies_by_depth: {
+                            $push: '$Replies'
+                        }
+                    }
+                },
+            ]).skip(skip).limit(pageSize);
+            return comments;
         } catch (error) {
             throw error;
         }

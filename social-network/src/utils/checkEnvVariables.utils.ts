@@ -1,6 +1,10 @@
 import { config } from "dotenv";
 config();
 
+/**
+ * Check whether the port and jwtPrivateKey environment variables are set or not
+ * if not set then exit the applcation after showing proper error message
+ */
 const checkEnvVariables = (): void => {
   if (!process.env.PORT) {
     console.log("Port number not defined. Exiting program..");

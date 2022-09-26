@@ -4,6 +4,12 @@ import { responseWrapper } from "../utils/index.util";
 import { Socket } from "../sockets/index.sockets";
 
 export default {
+    /**
+     * Create a new post
+     *
+     * @param reqPost Post data to be added
+     * @returns Succuess message after adding the post to database or throw error
+     */
     createPost: async (reqPost: iPostBody) => {
         try {
             const post: iPost = await postDal.create(reqPost);
@@ -18,6 +24,15 @@ export default {
         }
     },
 
+    /**
+     * Update the already existing post
+     *
+     * @param postId Id of the post to be updated
+     * @param reqPost Fields to be updated
+     * @param tokenUserId Jwt token that user passed in request header
+     * @param userRole Role of current user, either user or moderator
+     * @returns Updated post or failure message
+     */
     update: async (postId: string, reqPost: iEditPostBody, tokenUserId: string, userRole: string) => {
         try {
             const { failure } = await checkUserAccess(postId, tokenUserId, userRole, 'edit');
@@ -35,6 +50,14 @@ export default {
         }
     },
 
+    /**
+     * Delete already existing post
+     *
+     * @param postId Id of post to be deleted
+     * @param tokenUserId Jwt token that user passed in request header
+     * @param userRole Role of current user, either user or moderator
+     * @returns Succuess message if the post is deleted else failure message
+     */
     delete: async (postId: string, tokenUserId: string, userRole: string) => {
         try {
             const { failure } = await checkUserAccess(postId, tokenUserId, userRole, 'delete');
@@ -51,6 +74,14 @@ export default {
         }
     },
 
+    /**
+     * Get single post by passing its Id
+     *
+     * @param postId Id of post that user wants to get
+     * @param tokenUserId Jwt token that user passed in request header
+     * @param userRole Role of current user, either user or moderator
+     * @returns Post object if it exists else failure message
+     */
     getSinglePost: async (postId: string, tokenUserId: string, userRole: string) => {
         try {
             const { failure } = await checkUserAccess(postId, tokenUserId, userRole, 'view');
@@ -64,6 +95,16 @@ export default {
         }
     },
 
+    /**
+     * Get all posts of a specific user
+     *
+     * @param userId Id of logged in user
+     * @param userRole Role of current user, either user or moderator
+     * @param tokenUserId Jwt token that user passed in request header
+     * @param pageno Page number to paginating the records
+     * @param pageSize Page size for pagination
+     * @returns Posts added by specific user if exists else return failure message
+     */
     getUserPosts: async (userId: string, userRole: string, tokenUserId: string, pageno: string, pageSize: string) => {
         try {
             if (userRole === "user" && tokenUserId !== userId) {
@@ -75,7 +116,7 @@ export default {
             const userPosts: iPost[] = await postDal.getUserPosts(userId, pageNo, size);
             if (userPosts.length > 0) {
                 const posts = {
-                    usertasks: userPosts
+                    userPosts: userPosts
                 }
                 return { posts };
             }
@@ -86,6 +127,13 @@ export default {
         }
     },
 
+    /**
+     * Like any existing post
+     *
+     * @param postId Id of post to be liked
+     * @param userId Id of user liking the post
+     * @returns Success message along with the likes on post or failure message
+     */
     likePost: async (postId: string, userId: string) => {
         try {
             const exists: iPost = await postDal.isPostExists(postId)
@@ -112,6 +160,13 @@ export default {
         }
     },
 
+    /**
+     * Dislike any existing post
+     *
+     * @param postId Id of post to be disliked
+     * @param userId Id of user disliking the post
+     * @returns Success message along with the dislikes on post or failure message
+     */
     dislikePost: async (postId: string, userId: string) => {
         try {
             const exists: iPost = await postDal.isPostExists(postId)
@@ -137,7 +192,17 @@ export default {
         }
     },
 };
-
+/**
+ * Generic method to user whether user has access to perform speific operation.
+ * Like a user cannot delete, edit, get other user post. And also checks if the post 
+ * exists is database or not
+ *
+ * @param postId Id of post
+ * @param tokenUserId Jwt token that user passed in request header
+ * @param userRole Role of current user, either user or moderator
+ * @param operation Generic parameter to show failure message, can be delete, edit, view etc 
+ * @returns Failure object if user does not have access to perform specific operation, if user has acces then give true
+ */
 const checkUserAccess = async (postId: string, tokenUserId: string, userRole: string, operation: string) => {
     try {
         const post: iPost = await postDal.isPostExists(postId);

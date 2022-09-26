@@ -4,6 +4,13 @@ import { responseWrapper } from "../utils/index.util";
 import { Socket } from "../sockets/index.sockets";
 
 export default {
+    /**
+     * Follow a new user
+     *
+     * @param userId Id of logged In user
+     * @param followUserId Id of user to follow
+     * @returns Sucess message and followed users list or if something went wrong failure message and status code
+     */
     followUser: async (userId: string, followUserId: string) => {
         try {
             if (userId === followUserId) {
@@ -32,6 +39,13 @@ export default {
         }
     },
 
+    /**
+     * Unfollow a user
+     *
+     * @param userId Id of logged In user
+     * @param followUserId Id of user to be unfollowed
+     * @returns Unfollow message and followed users list if user is successfully unfollowed else failure message
+     */
     unfollowUser: async (userId: string, followUserId: string) => {
         try {
             if (userId === followUserId) {

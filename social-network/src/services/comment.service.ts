@@ -3,6 +3,14 @@ import { iComment, iPost, iResponse } from "../interfaces/index.interface";
 import { responseWrapper } from "../utils/index.util";
 
 export default {
+    /**
+     * Create a new comment on post
+     *
+     * @param userId Id of user adding a comment
+     * @param postId Id of post where comment is adding
+     * @param comment Description of comment
+     * @returns Success message and status code if comment is added and failure message and status code in case of failure
+     */
     createPostComment: async (userId: string, postId: string, comment: string) => {
         try {
             const exists: iPost = await postDal.isPostExists(postId)
@@ -17,6 +25,14 @@ export default {
         }
     },
 
+    /**
+     * Show all comments of a specific post 
+     *
+     * @param postId Id of post
+     * @param pageno Page number for paginating records
+     * @param pageSize Page size for pagination
+     * @returns Post comments if they exists or failure message in case of failure
+     */
     showPostComments: async (postId: string, pageno: string, pageSize: string) => {
         try {
             const exists: iPost = await postDal.isPostExists(postId)
@@ -40,6 +56,15 @@ export default {
         }
     },
 
+    /**
+     * Create a reply to a specific comment
+     *
+     * @param userId Id of user
+     * @param postId Id of post
+     * @param parentCommentId Id of comment whose reply is adding
+     * @param comment Body of comment
+     * @returns Success message if reply is added or failure message
+     */
     createCommentReply: async (userId: string, postId: string, parentCommentId: string, comment: string) => {
         try {
             const postExists: iPost = await postDal.isPostExists(postId)
@@ -58,6 +83,12 @@ export default {
         }
     },
 
+    /**
+     * Show all replies of a specific comment
+     *
+     * @param commmentId Id of comment
+     * @returns Replies of comment if they exists else failure message
+     */
     showCommentReplies: async (commmentId: string) => {
         try {
             const exists: iComment = await commentDal.isCommentExists(commmentId)
@@ -79,6 +110,13 @@ export default {
         }
     },
 
+    /**
+     * Like a comment
+     *
+     * @param commentId Id of comment to be liked
+     * @param userId Id of user liking the comment
+     * @returns Sucsess message and total likes along with the users Id in case of sucess or failure message
+     */
     likeComment: async (commentId: string, userId: string) => {
         try {
             const exists: iComment = await commentDal.isCommentExists(commentId)
@@ -102,6 +140,14 @@ export default {
         }
     },
 
+    /**
+     * Give all the replies posted against a specific comment.
+     *
+     * @param postId Id of post
+     * @param pageno Page number for paginating the records
+     * @param pageSize Size of page for pagination
+     * @returns Replies of a particular comment if they exists else failure message with status code
+     */
     postCommentsReplies: async (postId: string, pageno: string, pageSize: string) => {
         try {
             const exists: iPost = await postDal.isPostExists(postId)

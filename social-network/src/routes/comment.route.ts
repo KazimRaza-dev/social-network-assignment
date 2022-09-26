@@ -3,7 +3,6 @@ import { commentController } from "../controllers/index.controller";
 import { userAuth, validate } from "../middlewares/index.middleware";
 const commentRouter: Router = express.Router();
 
-
 commentRouter.post("/:postId", userAuth, validate.commentRequest, commentController.addPostComment);
 
 commentRouter.get("/show/:postId", userAuth, commentController.showPostComments);

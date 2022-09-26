@@ -3,6 +3,14 @@ import { commentService } from "../services/index.service";
 import { userAuthRequest } from "../interfaces/index.interface";
 
 export default {
+    /**
+     * Add new comment to a specific post
+     * 
+     * @param req The request  
+     * @param res The reponse   
+     * @param next Method to call the next middleware
+     * @returns Success message showing new comment is added
+     */
     addPostComment: async (req: userAuthRequest, res: Response, next: NextFunction) => {
         try {
             const userId = req.user._id;
@@ -15,6 +23,14 @@ export default {
         }
     },
 
+    /**
+     * Show all comments belong to specific post
+     * 
+     * @param req The request  
+     * @param res The reponse   
+     * @param next Method to call the next middleware
+     * @returns Post comments if exist else failure message    
+     */
     showPostComments: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const postId = req.params.postId;
@@ -30,6 +46,14 @@ export default {
         }
     },
 
+    /**
+     * Add a reply against an existing comment
+     * 
+     * @param req The request  
+     * @param res The reponse   
+     * @param next Method to call the next middleware
+     * @returns Success message showing reply is added against a comment
+     */
     addCommentReply: async (req: userAuthRequest, res: Response, next: NextFunction) => {
         try {
             const userId = req.user._id;
@@ -42,6 +66,14 @@ export default {
         }
     },
 
+    /**
+     * Show all the replies made against a comment
+     * 
+     * @param req The request  
+     * @param res The reponse   
+     * @param next Method to call the next middleware
+     * @returns All replies made against a comment else the failure message
+     */
     showCommentReplies: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const commentId = req.params.id;
@@ -55,6 +87,14 @@ export default {
         }
     },
 
+    /**
+     * Like an existing comment
+     * 
+     * @param req The request  
+     * @param res The reponse   
+     * @param next Method to call the next middleware
+     * @returns Success message showing the comment is liked, likes count and users that liked the comment or the failure message
+     */
     likeComment: async (req: userAuthRequest, res: Response, next: NextFunction) => {
         try {
             const userId: string = req.user._id;
@@ -69,6 +109,14 @@ export default {
         }
     },
 
+    /**
+     * Show the comments and its replies posted against a post
+     * 
+     * @param req The request  
+     * @param res The reponse   
+     * @param next Method to call the next middleware
+     * @returns List of comments or the failure message
+     */
     postCommentsReplies: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const postId = req.params.postId;
