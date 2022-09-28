@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"naseem@gmail.com\",\n    \"password\": \"123456\",\n    \"role\": \"user\"\n}",
+							"raw": "{\n    \"email\":\"kazim@gmail.com\",\n    \"password\": \"123456\",\n    \"role\": \"user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -25,12 +25,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/user/login",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/user/login",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"user",
 								"login"
@@ -53,7 +54,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"naseem@gmail.com\",\n    \"password\": \"123456\",\n    \"fname\": \"Naseem\",\n    \"lname\": \"Ali\",\n    \"phoneNo\": \"+923037777000\",\n    \"role\": \"user\"\n}",
+							"raw": "{\n    \"email\": \"haris@gmail.com\",\n    \"password\": \"123456\",\n    \"fname\": \"Haris\",\n    \"lname\": \"Rauf\",\n    \"phoneNo\": \"+923037777432\",\n    \"role\": \"user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -61,12 +62,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/user/register",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/user/register",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"user",
 								"register"
@@ -85,7 +87,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMxM2Q5ZmMyYmRkZWVhYjY3YWVkOGIiLCJlbWFpbCI6Im5hc2VlbUBnbWFpbC5jb20iLCJuYW1lIjoiTmFzZWVtIEFsaSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTg5NTY0LCJleHAiOjE2NjQyMDc1NjR9.n0_Ex82pfZ4DzGuiutUh58Uo48eyP4OObc2Uso3GmI8",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMzZDg4YmJlMzRiMTAwNjFmMDRhN2QiLCJlbWFpbCI6ImhhcmlzQGdtYWlsLmNvbSIsIm5hbWUiOiJIYXJpcyBSYXVmIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDIxNTUsImV4cCI6MTY2NDM2MDE1NX0.kWJ3qOdxymMhQOEiyEgb7tKSyGdckRbhswfisqkmEKE",
 								"type": "text"
 							}
 						],
@@ -99,12 +101,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/user/follow",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/user/follow",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"user",
 								"follow"
@@ -123,7 +126,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzJjNjk5ZTg1Zjk1YWRlMDRiZWJkYWUiLCJlbWFpbCI6InNoYWhlZW4xQGdtYWlsLmNvbSIsIm5hbWUiOiJTaGFoZWVuIEFmcmlkaSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjYzODU1MTM4LCJleHAiOjE2NjM4NzMxMzh9.jdaKKHKtr-RIpQEdYZEsBTHyg_-1meGk7np2Lr0_4cs",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMzZDg4YmJlMzRiMTAwNjFmMDRhN2QiLCJlbWFpbCI6ImhhcmlzQGdtYWlsLmNvbSIsIm5hbWUiOiJIYXJpcyBSYXVmIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDIxNTUsImV4cCI6MTY2NDM2MDE1NX0.kWJ3qOdxymMhQOEiyEgb7tKSyGdckRbhswfisqkmEKE",
 								"type": "text"
 							}
 						],
@@ -137,12 +140,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/user/unfollow",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/user/unfollow",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"user",
 								"unfollow"
@@ -163,13 +167,13 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxNjc3OGQ0MzkyMzM1MjU0NTMxNDUiLCJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwibmFtZSI6ImpvaG4gQ2VuYSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTkyNDQxLCJleHAiOjE2NjQyMTA0NDF9.c4prexj0jO0PIFooKxuRd4bp3PkkX36wJIUUTu8OdU8",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Cricket\",\n    \"description\": \"Play cricket..\"\n}",
+							"raw": "{\n    \"title\": \"Node JS\",\n    \"description\": \"Node is future..\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -177,12 +181,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/post/add",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/post/add",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"post",
 								"add"
@@ -198,13 +203,13 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxNjc3OGQ0MzkyMzM1MjU0NTMxNDUiLCJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwibmFtZSI6ImpvaG4gQ2VuYSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTkyNDQxLCJleHAiOjE2NjQyMTA0NDF9.c4prexj0jO0PIFooKxuRd4bp3PkkX36wJIUUTu8OdU8",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"description\": \"Playing cricket\"\n}",
+							"raw": "{\n    \"title\": \"Node TS\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -212,16 +217,17 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/post/edit/6331a2faec0b7325ed95686b",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/post/edit/6333d37ebe34b10061f04a68",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"post",
 								"edit",
-								"6331a2faec0b7325ed95686b"
+								"6333d37ebe34b10061f04a68"
 							]
 						}
 					},
@@ -234,21 +240,22 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxNjc3OGQ0MzkyMzM1MjU0NTMxNDUiLCJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwibmFtZSI6ImpvaG4gQ2VuYSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTkyNDQxLCJleHAiOjE2NjQyMTA0NDF9.c4prexj0jO0PIFooKxuRd4bp3PkkX36wJIUUTu8OdU8",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/post/delete/6331a2faec0b7325ed95686b",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/post/delete/6333d37ebe34b10061f04a68",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"post",
 								"delete",
-								"6331a2faec0b7325ed95686b"
+								"6333d37ebe34b10061f04a68"
 							]
 						}
 					},
@@ -261,21 +268,22 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxNjc3OGQ0MzkyMzM1MjU0NTMxNDUiLCJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwibmFtZSI6ImpvaG4gQ2VuYSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTkyNDQxLCJleHAiOjE2NjQyMTA0NDF9.c4prexj0jO0PIFooKxuRd4bp3PkkX36wJIUUTu8OdU8",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/post/userposts/63216778d439233525453145?pageno=1&size=15",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/post/userposts/632066df1243c8b2c9995ee4?pageno=1&size=10",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"post",
 								"userposts",
-								"63216778d439233525453145"
+								"632066df1243c8b2c9995ee4"
 							],
 							"query": [
 								{
@@ -284,7 +292,7 @@
 								},
 								{
 									"key": "size",
-									"value": "15"
+									"value": "10"
 								}
 							]
 						}
@@ -298,20 +306,21 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxNjc3OGQ0MzkyMzM1MjU0NTMxNDUiLCJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwibmFtZSI6ImpvaG4gQ2VuYSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTkyNDQxLCJleHAiOjE2NjQyMTA0NDF9.c4prexj0jO0PIFooKxuRd4bp3PkkX36wJIUUTu8OdU8",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/post/6321bd87be09d810af537c46",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/post/63219d6a11199b968c89986c",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"post",
-								"6321bd87be09d810af537c46"
+								"63219d6a11199b968c89986c"
 							]
 						}
 					},
@@ -324,21 +333,22 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxNjc3OGQ0MzkyMzM1MjU0NTMxNDUiLCJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwibmFtZSI6ImpvaG4gQ2VuYSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTkyNDQxLCJleHAiOjE2NjQyMTA0NDF9.c4prexj0jO0PIFooKxuRd4bp3PkkX36wJIUUTu8OdU8",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/post/like/6321bd87be09d810af537c46",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/post/like/6321b98b50b29515a30afa28",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"post",
 								"like",
-								"6321bd87be09d810af537c46"
+								"6321b98b50b29515a30afa28"
 							]
 						}
 					},
@@ -351,21 +361,22 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIxNjc3OGQ0MzkyMzM1MjU0NTMxNDUiLCJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwibmFtZSI6ImpvaG4gQ2VuYSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTkyNDQxLCJleHAiOjE2NjQyMTA0NDF9.c4prexj0jO0PIFooKxuRd4bp3PkkX36wJIUUTu8OdU8",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/post/dislike/6321bd87be09d810af537c46",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/post/dislike/6321b98b50b29515a30afa28",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"post",
 								"dislike",
-								"6321bd87be09d810af537c46"
+								"6321b98b50b29515a30afa28"
 							]
 						}
 					},
@@ -383,17 +394,18 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMxM2Q5ZmMyYmRkZWVhYjY3YWVkOGIiLCJlbWFpbCI6Im5hc2VlbUBnbWFpbC5jb20iLCJuYW1lIjoiTmFzZWVtIEFsaSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTk3NzcwLCJleHAiOjE2NjQyMTU3NzB9.UqvcDIGY5V29ZxvbvAvfXbN5k47f8VXqQLUTmPR6Uq4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMzZDg4YmJlMzRiMTAwNjFmMDRhN2QiLCJlbWFpbCI6ImhhcmlzQGdtYWlsLmNvbSIsIm5hbWUiOiJIYXJpcyBSYXVmIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDIxNTUsImV4cCI6MTY2NDM2MDE1NX0.kWJ3qOdxymMhQOEiyEgb7tKSyGdckRbhswfisqkmEKE",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/showfeed?pageno=1&size=15&sortby=title&order=asc",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/showfeed?pageno=1&size=15&sortby=title&order=asc",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"showfeed"
 							],
@@ -431,17 +443,18 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMxM2Q5ZmMyYmRkZWVhYjY3YWVkOGIiLCJlbWFpbCI6Im5hc2VlbUBnbWFpbC5jb20iLCJuYW1lIjoiTmFzZWVtIEFsaSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTcxNDY3LCJleHAiOjE2NjQxODk0Njd9.i0OxbI-kNr-vM-kTv_08qTJsihBiLEmAeKtz92iQUaQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMzZDg4YmJlMzRiMTAwNjFmMDRhN2QiLCJlbWFpbCI6ImhhcmlzQGdtYWlsLmNvbSIsIm5hbWUiOiJIYXJpcyBSYXVmIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDIxNTUsImV4cCI6MTY2NDM2MDE1NX0.kWJ3qOdxymMhQOEiyEgb7tKSyGdckRbhswfisqkmEKE",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/payment/create-checkout-session",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/payment/create-checkout-session",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"payment",
 								"create-checkout-session"
@@ -469,13 +482,13 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMxM2Q5ZmMyYmRkZWVhYjY3YWVkOGIiLCJlbWFpbCI6Im5hc2VlbUBnbWFpbC5jb20iLCJuYW1lIjoiTmFzZWVtIEFsaSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTk3NzcwLCJleHAiOjE2NjQyMTU3NzB9.UqvcDIGY5V29ZxvbvAvfXbN5k47f8VXqQLUTmPR6Uq4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comment\": \"Amazing post..\"\n}",
+							"raw": "{\n    \"comment\": \"Nice post.\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -483,12 +496,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/comment/63219d6a11199b968c89986c",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/comment/63219d6a11199b968c89986c",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"comment",
 								"63219d6a11199b968c89986c"
@@ -504,17 +518,18 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMxM2Q5ZmMyYmRkZWVhYjY3YWVkOGIiLCJlbWFpbCI6Im5hc2VlbUBnbWFpbC5jb20iLCJuYW1lIjoiTmFzZWVtIEFsaSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTk3NzcwLCJleHAiOjE2NjQyMTU3NzB9.UqvcDIGY5V29ZxvbvAvfXbN5k47f8VXqQLUTmPR6Uq4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/comment/show/63219d6a11199b968c89986c?pageNo=1&size=10",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/comment/show/63219d6a11199b968c89986c?pageNo=1&size=10",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"comment",
 								"show",
@@ -541,13 +556,13 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMxM2Q5ZmMyYmRkZWVhYjY3YWVkOGIiLCJlbWFpbCI6Im5hc2VlbUBnbWFpbC5jb20iLCJuYW1lIjoiTmFzZWVtIEFsaSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTk3NzcwLCJleHAiOjE2NjQyMTU3NzB9.UqvcDIGY5V29ZxvbvAvfXbN5k47f8VXqQLUTmPR6Uq4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"comment\": \"thanks..\",\n    \"postId\": \"63219d6a11199b968c89986c\"\n}",
+							"raw": "{\n    \"comment\": \"reply to comment\",\n    \"postId\": \"63219d6a11199b968c89986c\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -555,16 +570,17 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/comment/reply/6331a4f6ec0b7325ed956887",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/comment/reply/6333dc335f605c8db429fd85",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"comment",
 								"reply",
-								"6331a4f6ec0b7325ed956887"
+								"6333dc335f605c8db429fd85"
 							]
 						}
 					},
@@ -577,21 +593,22 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMxM2Q5ZmMyYmRkZWVhYjY3YWVkOGIiLCJlbWFpbCI6Im5hc2VlbUBnbWFpbC5jb20iLCJuYW1lIjoiTmFzZWVtIEFsaSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTk3NzcwLCJleHAiOjE2NjQyMTU3NzB9.UqvcDIGY5V29ZxvbvAvfXbN5k47f8VXqQLUTmPR6Uq4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/comment/show-replies/6331a4f6ec0b7325ed956887",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/comment/show-replies/6333dc335f605c8db429fd85",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"comment",
 								"show-replies",
-								"6331a4f6ec0b7325ed956887"
+								"6333dc335f605c8db429fd85"
 							]
 						}
 					},
@@ -604,21 +621,22 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMxM2Q5ZmMyYmRkZWVhYjY3YWVkOGIiLCJlbWFpbCI6Im5hc2VlbUBnbWFpbC5jb20iLCJuYW1lIjoiTmFzZWVtIEFsaSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTk3NzcwLCJleHAiOjE2NjQyMTU3NzB9.UqvcDIGY5V29ZxvbvAvfXbN5k47f8VXqQLUTmPR6Uq4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/comment/like/6331a4f6ec0b7325ed956887",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/comment/like/6333dc335f605c8db429fd85",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"comment",
 								"like",
-								"6331a4f6ec0b7325ed956887"
+								"6333dc335f605c8db429fd85"
 							]
 						}
 					},
@@ -631,17 +649,18 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzMxM2Q5ZmMyYmRkZWVhYjY3YWVkOGIiLCJlbWFpbCI6Im5hc2VlbUBnbWFpbC5jb20iLCJuYW1lIjoiTmFzZWVtIEFsaSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjY0MTk3NzcwLCJleHAiOjE2NjQyMTU3NzB9.UqvcDIGY5V29ZxvbvAvfXbN5k47f8VXqQLUTmPR6Uq4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNjZkZjEyNDNjOGIyYzk5OTVlZTQiLCJlbWFpbCI6ImthemltQGdtYWlsLmNvbSIsIm5hbWUiOiJrYXppbSBSYXphIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjQzNDA3OTAsImV4cCI6MTY2NDM1ODc5MH0.gYPa0cAadzP-2NN5ZGVB8e0W4YzLZ6Nr6HLY6y1tSw0",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/comment/display-all/63219d6a11199b968c89986c?pageNo=1&size=10",
-							"protocol": "http",
+							"raw": "https://kazim-nodejs-social-network.herokuapp.com/comment/display-all/63219d6a11199b968c89986c?pageNo=1&size=10",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"kazim-nodejs-social-network",
+								"herokuapp",
+								"com"
 							],
-							"port": "3000",
 							"path": [
 								"comment",
 								"display-all",
