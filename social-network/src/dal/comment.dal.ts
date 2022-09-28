@@ -1,6 +1,6 @@
 import { Comment } from "./models/index.model";
 import { iComment } from "../interfaces/index.interface";
-import mongoose, { ObjectId } from "mongoose";
+import mongoose from "mongoose";
 
 export default {
     /**

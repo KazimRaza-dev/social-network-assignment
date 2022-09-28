@@ -22,17 +22,17 @@ export default {
      * @param userId Id of user
      * @param pageNo Page number passed in query string for paginating records
      * @param pageSize Page size passed in query string for pagination
-     * @param sortby Field by which posts will sorted
+     * @param sortBy Field by which posts will sorted
      * @param order Order of sorting
      * @returns Posts
      */
-    showFeed: async (userId: string, pageNo = 1, pageSize = 5, sortby = "_createdAt", order = "asc"): Promise<iPost[]> => {
+    showFeed: async (userId: string, pageNo = 1, pageSize = 5, sortBy = "createdAt", order = "asc"): Promise<iPost[]> => {
         try {
             const sortOrder = order === "asc" ? 1 : -1;
             const skip: number = (pageNo - 1) * pageSize;
             const followingUsers = await User.findById(userId).select('following');
             const feedPosts: iPost[] = await Post.find({ "userId": { "$in": followingUsers.following } })
-                .sort({ [sortby]: sortOrder }).skip(skip).limit(pageSize);
+                .sort({ [sortBy]: sortOrder }).skip(skip).limit(pageSize);
             return feedPosts;
         } catch (error) {
             throw error;

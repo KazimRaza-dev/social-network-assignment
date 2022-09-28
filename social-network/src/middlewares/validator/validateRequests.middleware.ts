@@ -108,9 +108,9 @@ export default {
             desc = 'desc'
         }
         const feedSchema: Schema = Joi.object({
-            pageno: Joi.string(),
+            pageNo: Joi.string(),
             size: Joi.string(),
-            sortby: Joi.string().valid(...Object.values(validSort)),
+            sortBy: Joi.string().valid(...Object.values(validSort)),
             order: Joi.string().valid(...Object.values(validOrder)),
         });
         validateRequestQuery(req, res, next, feedSchema)

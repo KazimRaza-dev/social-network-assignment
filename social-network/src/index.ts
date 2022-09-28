@@ -11,11 +11,12 @@ config();
 connectToMongoDb();
 checkEnvVariables();
 
-let PORT: number = parseInt(process.env.PORT as string, 10);
+const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;
 const corsOptions: CorsOptions = {
-    origin: `http://localhost:${PORT}`,
+    origin: `${process.env.STRIPE_SERVER_URL}`,
     methods: "HEAD, PUT, PATCH, POST, DELETE",
 }
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

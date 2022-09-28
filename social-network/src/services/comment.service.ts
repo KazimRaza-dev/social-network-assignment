@@ -29,20 +29,20 @@ export default {
      * Show all comments of a specific post 
      *
      * @param postId Id of post
-     * @param pageno Page number for paginating records
+     * @param pageNo Page number for paginating records
      * @param pageSize Page size for pagination
      * @returns Post comments if they exists or failure message in case of failure
      */
-    showPostComments: async (postId: string, pageno: string, pageSize: string) => {
+    showPostComments: async (postId: string, pageNo, pageSize) => {
         try {
             const exists: iPost = await postDal.isPostExists(postId)
             if (!exists) {
                 const commentFailure: iResponse = responseWrapper(404, `Post with Id ${postId} does not Exists.`);
                 return { commentFailure };
             }
-            const pageNo = pageno && parseInt(pageno);
+            const pgNo = pageNo && parseInt(pageNo);
             const size = pageSize && parseInt(pageSize);
-            const comments: iComment[] = await commentDal.showPostComments(postId, pageNo, size);
+            const comments: iComment[] = await commentDal.showPostComments(postId, pgNo, size);
             if (comments.length > 0) {
                 const commentSuccess = {
                     comments: comments
@@ -144,20 +144,20 @@ export default {
      * Give all the replies posted against a specific comment.
      *
      * @param postId Id of post
-     * @param pageno Page number for paginating the records
+     * @param pageNo Page number for paginating the records
      * @param pageSize Size of page for pagination
      * @returns Replies of a particular comment if they exists else failure message with status code
      */
-    postCommentsReplies: async (postId: string, pageno: string, pageSize: string) => {
+    postCommentsReplies: async (postId: string, pageNo, pageSize) => {
         try {
             const exists: iPost = await postDal.isPostExists(postId)
             if (!exists) {
                 const commentFailure: iResponse = responseWrapper(404, `Post with Id ${postId} does not Exists.`);
                 return { commentFailure };
             }
-            const pageNo = pageno && parseInt(pageno);
+            const pgNo = pageNo && parseInt(pageNo);
             const size = pageSize && parseInt(pageSize);
-            const comments = await commentDal.postCommentsReplies(postId, pageNo, size);
+            const comments = await commentDal.postCommentsReplies(postId, pgNo, size);
             if (comments.length > 0) {
                 const commentSuccess = {
                     comments: comments

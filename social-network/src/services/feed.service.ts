@@ -6,22 +6,22 @@ export default {
      * Show social feed to user
      *
      * @param userId Id of user who wants to view the social feed
-     * @param pageno Page number for paginating records 
+     * @param pageNo Page number for paginating records 
      * @param size Size of page
-     * @param sortby Field to sort the records  
+     * @param sortBy Field to sort the records  
      * @param order Order of sorting
      * @returns Posts of the following users or failure message along with the status code
      */
-    showFeed: async (userId: string, pageno: string, size: string, sortby: string, order: string) => {
+    showFeed: async (userId: string, pageNo, size, sortBy, order) => {
         try {
-            const pageNo = pageno && parseInt(pageno);
+            const pgNo = pageNo && parseInt(pageNo);
             const pageSize = size && parseInt(size);
             const isUserExists = await feedDal.isUserExists(userId);
             if (!isUserExists) {
                 const feedFailure = responseWrapper(404, `User with Id ${userId} does not Exists.`);
                 return { feedFailure };
             }
-            const feedPosts = await feedDal.showFeed(userId, pageNo, pageSize, sortby, order);
+            const feedPosts = await feedDal.showFeed(userId, pgNo, pageSize, sortBy, order);
             if (feedPosts.length > 0) {
                 const feed = {
                     posts: feedPosts

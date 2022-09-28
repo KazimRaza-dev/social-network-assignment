@@ -12,9 +12,10 @@ export default {
      * Create a session for stripe payment
      *
      * @param userId Id of logged in user
+     * @param price payment required  
      * @returns Stripe session object for making payment    
      */
-    createStripeSession: async (userId: string): Promise<Stripe.Response<Stripe.Checkout.Session>> => {
+    createStripeSession: async (userId: string, price: number): Promise<Stripe.Response<Stripe.Checkout.Session>> => {
         try {
             const session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
@@ -26,7 +27,7 @@ export default {
                             product_data: {
                                 name: "Payment for Social Feed",
                             },
-                            unit_amount: 1200,
+                            unit_amount: price,
                         },
                         quantity: 1,
                     }

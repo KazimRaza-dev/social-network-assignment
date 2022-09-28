@@ -22,7 +22,8 @@ export default {
             if (isPaid) {
                 return res.status(400).send({ message: "You have already paid for social Feed." })
             }
-            const session = await paymentService.createStripeSession(userId);
+            const price: number = 1200;
+            const session = await paymentService.createStripeSession(userId, price);
             res.json({ url: session.url })
         } catch (error) {
             next(error);

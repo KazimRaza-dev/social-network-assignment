@@ -34,8 +34,7 @@ export default {
     showPostComments: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const postId = req.params.postId;
-            const pageNo = req.query.pageNo as string;
-            const size = req.query.size as string;
+            const { pageNo, size } = req.query;
             const { commentSuccess, commentFailure } = await commentService.showPostComments(postId, pageNo, size);
             if (commentFailure) {
                 return res.status(commentFailure.statusCode).send({ message: commentFailure.message });
@@ -120,8 +119,7 @@ export default {
     postCommentsReplies: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const postId = req.params.postId;
-            const pageNo = req.query.pageNo as string;
-            const size = req.query.size as string;
+            const { pageNo, size } = req.query;
             const { commentSuccess, commentFailure } = await commentService.postCommentsReplies(postId, pageNo, size);
             if (commentFailure) {
                 return res.status(commentFailure.statusCode).send({ message: commentFailure.message });

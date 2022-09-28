@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "Social network assignment",
   "main": "index.js",
+  "engines": { "node": "18.9.0", "npm": "8.19.2" },
   "scripts": {
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "start": "node dist/index.js",
+    "build": "tsc",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
-    "jsdoc": "jsdoc -c jsdoc.json"
+    "jsdoc": "jsdoc -c jsdoc.json",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "author": "kazim Raza",
   "license": "ISC",

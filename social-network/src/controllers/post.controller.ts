@@ -114,9 +114,8 @@ export default {
             const tokenUserId: string = req.user._id;
             const userId: string = req.params.userId;
             const userRole: string = req.user.role;
-            const pageno = req.query.pageno as string;
-            const size = req.query.size as string;
-            const { failure, posts } = await postService.getUserPosts(userId, userRole, tokenUserId, pageno, size);
+            const { pageno, size } = req.query;
+            const { failure, posts } = await postService.getUserPosts(userRole, tokenUserId, userId, pageno, size);
             if (failure) {
                 return res.status(failure.statusCode).send({ message: failure.message });
             }

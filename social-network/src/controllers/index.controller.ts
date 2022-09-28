@@ -4,5 +4,6 @@ import feedController from "./feed.controller";
 import authController from "./auth.controller";
 import paymentController from "./payment.controller";
 import commentController from "./comment.controller";
+import testController from "./test.controller";
 
-export { authController, userController, postController, feedController, paymentController, commentController };
+export { authController, userController, postController, feedController, paymentController, commentController, testController };

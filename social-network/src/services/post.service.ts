@@ -98,22 +98,22 @@ export default {
     /**
      * Get all posts of a specific user
      *
-     * @param userId Id of logged in user
      * @param userRole Role of current user, either user or moderator
      * @param tokenUserId Jwt token that user passed in request header
-     * @param pageno Page number to paginating the records
+     * @param userId Id of logged in user
+     * @param pageNo Page number to paginating the records
      * @param pageSize Page size for pagination
      * @returns Posts added by specific user if exists else return failure message
      */
-    getUserPosts: async (userId: string, userRole: string, tokenUserId: string, pageno: string, pageSize: string) => {
+    getUserPosts: async (userRole: string, tokenUserId: string, userId, pageNo, pageSize) => {
         try {
             if (userRole === "user" && tokenUserId !== userId) {
                 const failure = responseWrapper(400, "You cannot view other User's posts.")
                 return { failure };
             }
-            const pageNo = pageno && parseInt(pageno);
+            const pgNo = pageNo && parseInt(pageNo);
             const size = pageSize && parseInt(pageSize);
-            const userPosts: iPost[] = await postDal.getUserPosts(userId, pageNo, size);
+            const userPosts: iPost[] = await postDal.getUserPosts(userId, pgNo, size);
             if (userPosts.length > 0) {
                 const posts = {
                     userPosts: userPosts
