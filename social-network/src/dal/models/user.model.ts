@@ -41,6 +41,7 @@ const userSchema: Schema = new Schema<iUser>({
 }, {
     timestamps: true
 });
+
 /**
  * This method generates jwt authentication token for a user at time of registration or login
  * 

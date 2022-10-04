@@ -12,8 +12,7 @@ export default {
     createPostComment: async (postComment): Promise<iComment> => {
         try {
             const newComment = new Comment(postComment);
-            const comment: iComment = await newComment.save();
-            return comment;
+            return newComment.save();
         } catch (error) {
             throw error;
         }
@@ -29,9 +28,8 @@ export default {
     showPostComments: async (postId: string, pageNo = 1, pageSize = 5): Promise<iComment[]> => {
         try {
             const skip: number = (pageNo - 1) * pageSize;
-            const comments = await Comment.find({ postId: postId, parentCommentId: null })
+            return Comment.find({ postId: postId, parentCommentId: null })
                 .limit(pageSize).skip(skip);
-            return comments;
         } catch (error) {
             throw error;
         }
@@ -45,9 +43,8 @@ export default {
      */
     isPostComment: async (commentId: string, postId: string): Promise<iComment> => {
         try {
-            const comment = await Comment.findOne()
+            return Comment.findOne()
                 .and([{ "_id": commentId }, { "postId": postId }])
-            return comment;
         } catch (error) {
             throw error;
         }
@@ -60,8 +57,7 @@ export default {
      */
     isCommentExists: async (commentId: string): Promise<iComment> => {
         try {
-            const comment = await Comment.findById(commentId);
-            return comment;
+            return Comment.findById(commentId);
         } catch (error) {
             throw error;
         }
@@ -74,8 +70,7 @@ export default {
      */
     showCommentReplies: async (commentId: string): Promise<iComment[]> => {
         try {
-            const comments = await Comment.find({ parentCommentId: commentId });
-            return comments;
+            return Comment.find({ parentCommentId: commentId });
         } catch (error) {
             throw error;
         }
@@ -88,12 +83,10 @@ export default {
      * @returns Comment if it exists
      */
     isAlreadyLiked: async (commentId: string, userId: string): Promise<iComment> => {
-        const comment: iComment = await Comment.findOne()
-            .and([{ _id: commentId }, { "likes": { $in: [userId] } }]);
-        if (comment) {
-            await Comment.findByIdAndUpdate(commentId, { $pull: { likes: userId }, });
-        }
-        return comment;
+        return Comment.findOneAndUpdate(
+            { _id: commentId, 'likes': { $in: [userId] } },
+            { $pull: { likes: userId } }
+        );
     },
     /**
      * Like a comment
@@ -104,10 +97,9 @@ export default {
      */
     likeComment: async (commentId: string, userId: string): Promise<iComment> => {
         try {
-            const commentLiked = await Comment.findByIdAndUpdate(commentId, {
+            return Comment.findByIdAndUpdate(commentId, {
                 $push: { likes: userId }
             }, { new: true });
-            return commentLiked;
         } catch (error) {
             throw error;
         }

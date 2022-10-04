@@ -120,7 +120,7 @@ export default {
                 }
                 return { posts };
             }
-            const failure = responseWrapper(404, "No Post exist for this user.")
+            const failure = responseWrapper(404, "No Post exists for this user.")
             return { failure }
         } catch (error) {
             throw error;

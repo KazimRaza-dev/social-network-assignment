@@ -11,8 +11,7 @@ export default {
     create: async (reqPost: iPostBody): Promise<iPost> => {
         try {
             const newPost = new Post(reqPost);
-            const post: iPost = await newPost.save();
-            return post;
+            return newPost.save();
         } catch (error) {
             throw error;
         }
@@ -25,8 +24,7 @@ export default {
      */
     isPostExists: async (postId: string): Promise<iPost> => {
         try {
-            const post: iPost = await Post.findById(postId).select('userId');
-            return post;
+            return Post.findById(postId).select('userId');
         } catch (error) {
             throw error;
         }
@@ -40,10 +38,9 @@ export default {
      */
     update: async (postId: string, reqPost: iEditPostBody): Promise<iPost> => {
         try {
-            const post: iPost = await Post.findByIdAndUpdate(postId, reqPost, {
+            return Post.findByIdAndUpdate(postId, reqPost, {
                 new: true
             });
-            return post;
         } catch (error) {
             throw error;
         }
@@ -56,8 +53,7 @@ export default {
      */
     delete: async (postId: string): Promise<iPost> => {
         try {
-            const postdeleted: iPost = await Post.findByIdAndDelete(postId);
-            return postdeleted;
+            return Post.findByIdAndDelete(postId);
         } catch (error) {
             throw error;
         }
@@ -70,8 +66,7 @@ export default {
      */
     getSinglePost: async (postId: string): Promise<iPost> => {
         try {
-            const post: iPost = await Post.findById(postId);
-            return post;
+            return Post.findById(postId);
         } catch (error) {
             throw error;
         }
@@ -87,8 +82,7 @@ export default {
     getUserPosts: async (userId: string, pageNo = 1, pageSize = 5): Promise<iPost[]> => {
         try {
             const skip: number = (pageNo - 1) * pageSize;
-            const userPosts: iPost[] = await Post.find({ userId: userId }).select('title description likes dislikes _createdAt').skip(skip).limit(pageSize);
-            return userPosts;
+            return Post.find({ userId: userId }).select('title description likes dislikes _createdAt').skip(skip).limit(pageSize);
         } catch (error) {
             throw error;
         }
@@ -101,12 +95,10 @@ export default {
      * @returns Post 
      */
     isAlreadyLiked: async (postId: string, userId: string): Promise<iPost> => {
-        const post: iPost = await Post.findOne()
-            .and([{ _id: postId }, { "likes": { $in: [userId] } }]);
-        if (post) {
-            await Post.findByIdAndUpdate(postId, { $pull: { likes: userId }, }, { new: true });
-        }
-        return post;
+        return Post.findOneAndUpdate(
+            { _id: postId, "likes": { $in: [userId] } },
+            { $pull: { likes: userId } }, { new: true }
+        )
     },
     /**
      * Add like of user to post
@@ -117,10 +109,9 @@ export default {
      */
     likePost: async (postId: string, userId: string) => {
         try {
-            const postLiked = await Post.findByIdAndUpdate(postId, {
+            return Post.findByIdAndUpdate(postId, {
                 $push: { likes: userId }
             }, { new: true });
-            return postLiked;
         } catch (error) {
             throw error;
         }
@@ -133,14 +124,10 @@ export default {
      * @returns Post 
      */
     isAlreadyDisliked: async (postId: string, userId: string): Promise<iPost> => {
-        const post: iPost = await Post.findOne()
-            .and([{ _id: postId }, { "dislikes": { $in: [userId] } }]);
-        if (post) {
-            await Post.findByIdAndUpdate(postId, {
-                $pull: { dislikes: userId },
-            }, { new: true });
-        }
-        return post;
+        return Post.findOneAndUpdate(
+            { _id: postId, "dislikes": { $in: [userId] } },
+            { $pull: { dislikes: userId } }, { new: true }
+        )
     },
     /**
      * Add dislike of user to post
@@ -151,10 +138,9 @@ export default {
      */
     dislikePost: async (postId: string, userId: string) => {
         try {
-            const postdisLiked = await Post.findByIdAndUpdate(postId, {
+            return Post.findByIdAndUpdate(postId, {
                 $push: { dislikes: userId }
             }, { new: true });
-            return postdisLiked;
         } catch (error) {
             throw error;
         }

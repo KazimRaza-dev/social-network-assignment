@@ -12,8 +12,7 @@ export default {
      */
     isEmailExists: async (userEmail: string, userRole: string): Promise<iUser> => {
         try {
-            const isUserExists: iUser = await User.findOne({ email: userEmail, role: userRole });
-            return isUserExists;
+            return User.findOne({ email: userEmail, role: userRole });
         } catch (error) {
             throw error;
         }
@@ -27,8 +26,7 @@ export default {
     register: async (reqUser: iRegisterBody): Promise<iUser> => {
         try {
             const newUser: iUser = new User(reqUser);
-            const user: iUser = await newUser.save();
-            return user;
+            return newUser.save();
         } catch (error) {
             throw error;
         }

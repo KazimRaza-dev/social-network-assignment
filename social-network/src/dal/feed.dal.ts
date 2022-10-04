@@ -10,8 +10,7 @@ export default {
      */
     isUserExists: async (userId: string): Promise<iUser> => {
         try {
-            const user: iUser = await User.findOne({ _id: userId });
-            return user;
+            return User.findOne({ _id: userId });
         } catch (error) {
             throw error;
         }
@@ -19,19 +18,18 @@ export default {
     /**
      * Show posts added by all the users that the login user is following
      * 
-     * @param userId Id of user
+     * @param followingUsers list of users the logged-In user following
      * @param pageNo Page number passed in query string for paginating records
      * @param pageSize Page size passed in query string for pagination
      * @param sortBy Field by which posts will sorted
      * @param order Order of sorting
      * @returns Posts
      */
-    showFeed: async (userId: string, pageNo = 1, pageSize = 5, sortBy = "createdAt", order = "asc"): Promise<iPost[]> => {
+    showFeed: async (followingUsers: string[], pageNo = 1, pageSize = 5, sortBy = "createdAt", order = "asc") => {
         try {
             const sortOrder = order === "asc" ? 1 : -1;
             const skip: number = (pageNo - 1) * pageSize;
-            const followingUsers = await User.findById(userId).select('following');
-            const feedPosts: iPost[] = await Post.find({ "userId": { "$in": followingUsers.following } })
+            const feedPosts: iPost[] = await Post.find({ "userId": { "$in": followingUsers } })
                 .sort({ [sortBy]: sortOrder }).skip(skip).limit(pageSize);
             return feedPosts;
         } catch (error) {

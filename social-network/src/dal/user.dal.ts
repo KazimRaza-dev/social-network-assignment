@@ -10,8 +10,7 @@ export default {
      */
     isUserExists: async (userId: string): Promise<iUser> => {
         try {
-            const user: iUser = await User.findOne({ _id: userId });
-            return user;
+            return User.findById(userId);
         } catch (error) {
             throw error;
         }
@@ -24,9 +23,8 @@ export default {
      * @returns user object if it exists
      */
     isFollowing: async (loginUserId: string, followUserId: string): Promise<iUser> => {
-        const user: iUser = await User.findOne()
+        return User.findOne()
             .and([{ _id: loginUserId }, { "following": followUserId }]);
-        return user;
     },
     /**
      * Follow other user
@@ -35,12 +33,11 @@ export default {
      * @param followUserId Id of user to be followed
      * @returns user object from database after following the user 
      */
-    followUser: async (loginUserId: string, followUserId: string) => {
+    followUser: async (loginUserId: string, followUserId: string): Promise<iUser> => {
         try {
-            const userFollowed = await User.findByIdAndUpdate(loginUserId, {
+            return User.findByIdAndUpdate(loginUserId, {
                 $push: { following: followUserId }
             }, { new: true });
-            return userFollowed;
         } catch (error) {
             throw error;
         }
@@ -52,14 +49,11 @@ export default {
      * @param followUserId Id of already following user
      * @returns user object from database after unfollowing the following user 
      */
-    unfollowUser: async (loginUserId: string, followUserId: string) => {
+    unfollowUser: async (loginUserId: string, followUserId: string): Promise<iUser> => {
         try {
-            const unfollowed = await User.findByIdAndUpdate(loginUserId, {
-                $pullAll: {
-                    following: [followUserId],
-                },
+            return User.findByIdAndUpdate(loginUserId, {
+                $pullAll: { following: [followUserId], },
             }, { new: true });
-            return unfollowed;
         } catch (error) {
             throw error;
         }

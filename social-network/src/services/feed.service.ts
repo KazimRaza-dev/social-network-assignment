@@ -1,4 +1,4 @@
-import { feedDal, paymentDal } from "../dal/index.dal";
+import { feedDal, paymentDal, userDal } from "../dal/index.dal";
 import { responseWrapper } from "../utils/index.util";
 
 export default {
@@ -21,7 +21,8 @@ export default {
                 const feedFailure = responseWrapper(404, `User with Id ${userId} does not Exists.`);
                 return { feedFailure };
             }
-            const feedPosts = await feedDal.showFeed(userId, pgNo, pageSize, sortBy, order);
+            const following = await userDal.getFollowedUsers(userId)
+            const feedPosts = await feedDal.showFeed(following, pgNo, pageSize, sortBy, order);
             if (feedPosts.length > 0) {
                 const feed = {
                     posts: feedPosts

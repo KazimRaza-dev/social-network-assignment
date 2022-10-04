@@ -11,8 +11,7 @@ export default {
     createPayment: async (reqPayment: iPayment): Promise<iPayment> => {
         try {
             const newPayment = new Payment(reqPayment);
-            const payment: iPayment = await newPayment.save();
-            return payment;
+            return newPayment.save();
         } catch (error) {
             throw error;
         }
@@ -25,8 +24,7 @@ export default {
      */
     isAlreadyPaid: async (userId: string): Promise<iPayment> => {
         try {
-            const payment = await Payment.findOne({ userId: userId });
-            return payment;
+            return Payment.findOne({ userId: userId });
         } catch (error) {
             throw error;
         }
