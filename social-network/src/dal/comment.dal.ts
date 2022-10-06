@@ -116,7 +116,7 @@ export default {
         try {
             const skip: number = (pageNo - 1) * pageSize;
             const id = new mongoose.Types.ObjectId(postId);
-            const comments = await Comment.aggregate([
+            return Comment.aggregate([
                 { $match: { parentCommentId: null, postId: id } },
                 {
                     $graphLookup: {
@@ -132,13 +132,12 @@ export default {
                 {
                     $group: {
                         _id: '$Replies.parentCommentId',
-                        replies_by_depth: {
+                        replies: {
                             $push: '$Replies'
                         }
                     }
                 },
             ]).skip(skip).limit(pageSize);
-            return comments;
         } catch (error) {
             throw error;
         }
