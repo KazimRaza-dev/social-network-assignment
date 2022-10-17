@@ -1,0 +1,409 @@
+{
+	"info": {
+		"_postman_id": "e256eab5-af18-41ba-a25e-f443d100ae5b",
+		"name": "Social-Network",
+		"description": "Collection for social network application.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23011762"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"ali@gmail.com\",\n    \"password\": \"123456\",\n    \"role\": \"user\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"imran@gmail.com\",\n    \"password\": \"123456\",\n    \"fname\": \"Imran\",\n    \"lname\": \"Ali\",\n    \"phoneNo\": \"+923037777000\",\n    \"role\": \"moderator\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "follow User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNmRlN2M1OTkxNzE5NDk2MGRkMGQiLCJlbWFpbCI6ImFsaUBnbWFpbC5jb20iLCJuYW1lIjoiYWxpIEFobWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjM2ODA0OTQsImV4cCI6MTY2MzY5ODQ5NH0.bZG_18uYhJCZHhAsFelWRiwjF977R9UaDnr_D5sRpMc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"6329bab63d8efb21b892dd78\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/follow",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"follow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unfollow User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNmRlN2M1OTkxNzE5NDk2MGRkMGQiLCJlbWFpbCI6ImFsaUBnbWFpbC5jb20iLCJuYW1lIjoiYWxpIEFobWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjM2ODA0OTQsImV4cCI6MTY2MzY5ODQ5NH0.bZG_18uYhJCZHhAsFelWRiwjF977R9UaDnr_D5sRpMc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"6329bab63d8efb21b892dd78\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/unfollow",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"unfollow"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "create post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNmRlN2M1OTkxNzE5NDk2MGRkMGQiLCJlbWFpbCI6ImFsaUBnbWFpbC5jb20iLCJuYW1lIjoiYWxpIEFobWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjM2ODA0OTQsImV4cCI6MTY2MzY5ODQ5NH0.bZG_18uYhJCZHhAsFelWRiwjF977R9UaDnr_D5sRpMc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Food Day\",\n    \"description\": \"Today is food day..\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/post/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit post",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNmRlN2M1OTkxNzE5NDk2MGRkMGQiLCJlbWFpbCI6ImFsaUBnbWFpbC5jb20iLCJuYW1lIjoiYWxpIEFobWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjM2ODA0OTQsImV4cCI6MTY2MzY5ODQ5NH0.bZG_18uYhJCZHhAsFelWRiwjF977R9UaDnr_D5sRpMc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"The food Day\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/post/edit/6329c0833d8efb21b892ddc1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"edit",
+								"6329c0833d8efb21b892ddc1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNmRlN2M1OTkxNzE5NDk2MGRkMGQiLCJlbWFpbCI6ImFsaUBnbWFpbC5jb20iLCJuYW1lIjoiYWxpIEFobWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjM2ODA0OTQsImV4cCI6MTY2MzY5ODQ5NH0.bZG_18uYhJCZHhAsFelWRiwjF977R9UaDnr_D5sRpMc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/post/delete/6329c0833d8efb21b892ddc1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"delete",
+								"6329c0833d8efb21b892ddc1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNmRlN2M1OTkxNzE5NDk2MGRkMGQiLCJlbWFpbCI6ImFsaUBnbWFpbC5jb20iLCJuYW1lIjoiYWxpIEFobWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjM2ODA0OTQsImV4cCI6MTY2MzY5ODQ5NH0.bZG_18uYhJCZHhAsFelWRiwjF977R9UaDnr_D5sRpMc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/post/userposts/63206de7c59917194960dd0d?pageno=1&size=15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"userposts",
+								"63206de7c59917194960dd0d"
+							],
+							"query": [
+								{
+									"key": "pageno",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single post",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIwNmRlN2M1OTkxNzE5NDk2MGRkMGQiLCJlbWFpbCI6ImFsaUBnbWFpbC5jb20iLCJuYW1lIjoiYWxpIEFobWFkIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NjM2ODA0OTQsImV4cCI6MTY2MzY5ODQ5NH0.bZG_18uYhJCZHhAsFelWRiwjF977R9UaDnr_D5sRpMc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/post/6321af637ed3e57747ce600e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post",
+								"6321af637ed3e57747ce600e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feed",
+			"item": [
+				{
+					"name": "show feed",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzI5YmY0NzNkOGVmYjIxYjg5MmRkYWYiLCJlbWFpbCI6ImltcmFuQGdtYWlsLmNvbSIsIm5hbWUiOiJJbXJhbiBBbGkiLCJyb2xlIjoibW9kZXJhdG9yIiwiaWF0IjoxNjYzNjgwMzI3LCJleHAiOjE2NjM2OTgzMjd9.BNYudlTGxdi6WHklg5z6XymYGPzm9JeSwgt1OYnqtQM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/showfeed?pageno=1&size=15&sortby=title&order=asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"showfeed"
+							],
+							"query": [
+								{
+									"key": "pageno",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "15"
+								},
+								{
+									"key": "sortby",
+									"value": "title"
+								},
+								{
+									"key": "order",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "payment for feed",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzI5YmY0NzNkOGVmYjIxYjg5MmRkYWYiLCJlbWFpbCI6ImltcmFuQGdtYWlsLmNvbSIsIm5hbWUiOiJJbXJhbiBBbGkiLCJyb2xlIjoibW9kZXJhdG9yIiwiaWF0IjoxNjYzNjgwMzI3LCJleHAiOjE2NjM2OTgzMjd9.BNYudlTGxdi6WHklg5z6XymYGPzm9JeSwgt1OYnqtQM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/payment/create-checkout-session",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"payment",
+								"create-checkout-session"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
