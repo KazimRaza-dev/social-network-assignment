@@ -3,25 +3,42 @@
   "version": "1.0.0",
   "description": "Social network assignment",
   "main": "index.js",
+  "engines": { "node": "18.9.0", "npm": "8.19.2" },
   "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "lint-and-fix": "eslint . --ext .ts --fix",
+    "jsdoc": "jsdoc -c jsdoc.json",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "author": "kazim Raza",
   "license": "ISC",
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/lodash": "^4.14.185",
     "bcrypt": "^5.0.1",
     "concurrently": "^7.4.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "http": "^0.0.1-security",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "mongoose": "^6.6.0"
+    "mongoose": "^6.6.0",
+    "socket.io": "^4.5.2",
+    "stripe": "^10.10.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.9",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^18.7.16",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
+    "eslint": "^8.23.1",
+    "eslint-plugin-jsdoc": "^39.3.6",
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.3"
